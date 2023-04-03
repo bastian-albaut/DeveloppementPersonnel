@@ -1,0 +1,47 @@
+#sectionTwo {
+    height: 100vh;
+    padding: 30px 60px 30px 60px;
+    background-color:#5BC0EB;
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    text-align: center;
+}
+
+#boxSubSection {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#boxSubsection1 {
+    display: flex;
+    margin-bottom: 100px;
+    align-items: center;
+}
+
+#boxSubsection2 {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.illustration1, .illustration2 {
+    width: 20vw
+}
+
+.illustration1 {
+    margin-left: 50px;
+}
+
+.illustration2 {
+    margin-right: 50px;
+}
+
+#typoResult {
+    text-align: center;
+    margin-top: 100px;
+}
