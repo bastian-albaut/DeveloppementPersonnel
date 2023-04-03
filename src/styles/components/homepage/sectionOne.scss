@@ -1,0 +1,54 @@
+#sectionOne {
+    height: 100vh;
+    padding: 0 30px 0 30px;
+}
+
+#typoLogo {
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+#subSection {
+    height: 80%;
+    display: flex;
+}
+
+#subSectionLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 80px;
+}
+
+#subSectionRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#boxTitle {
+    margin-bottom: 30px;
+}
+
+#boxSubtitle {
+    margin-bottom: 30px;
+
+}
+
+#boxButton {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#boxButton2 {
+    display: flex;
+    flex-direction: column;
+}
+
+#boxButton2 > .containedButton {
+    margin-bottom: 10px;
+}
+
+.illustration {
+    width: 30vw;
+}

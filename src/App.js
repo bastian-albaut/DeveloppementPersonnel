@@ -1,24 +1,110 @@
-import logo from './logo.svg';
-import './App.css';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { StyledEngineProvider } from '@mui/material/styles';
 
-function App() {
+import HomePage from "./pages/homepage/Homepage";
+import "./styles/styles.scss"
+
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#DA2C38',
+    },
+    secondary: {
+      main: '#226F54',
+    },
+    background1: {
+      main: '#3a4f41',
+    },
+    background2: {
+      main: '#48ACF0',
+    },
+    black: {
+      main: '#000000',
+    },
+    grey: {
+      main: '#7d7d7d',
+    }
+  },
+  breakpoints: {
+    values: {
+      xs: 480,
+      sm: 600,
+      md: 768,
+      lg: 992,
+      xl: 1200,
+    },
+  },
+  typography: {
+    h1: {
+      fontFamily: [
+        'Fredoka',
+        'cursive',
+      ].join(','),
+    },
+    h2: {
+      fontFamily: [
+        'Raleway',
+        'cursive',
+      ].join(','),
+    },
+    h3: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    h4: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    h5: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    h6: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    subtitle1: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    body1: {
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
+    },
+    caption: {
+      fontFamily: 'Fresca'
+    },
+  },
+});
+
+theme = responsiveFontSizes(theme);
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} width="100%"/>
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </Routes>
+        </BrowserRouter>
+      </StyledEngineProvider>
+    </ThemeProvider>
   );
 }
 
