@@ -1,6 +1,7 @@
 import { Box, Typography, Button } from "@mui/material"
 import "../../styles/components/homepage/sectionOne.scss"
 import illustration from "../../assets/homepage/undraw_in_progress_re_m1l6.svg"
+import waves from "../../assets/homepage/waves.svg"
 
 export default function SectionOne() {
     
@@ -32,6 +33,7 @@ export default function SectionOne() {
                         <img className="illustration" alt="Illustration d'une progression" src={illustration} />
                     </Box>
                 </Box>
+                <img id="waves" alt="Vagues" src={waves} />
             </Box>
         
         </>

@@ -1,6 +1,7 @@
 #sectionOne {
     height: 100vh;
-    padding: 0 30px 0 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 #typoLogo {
@@ -9,6 +10,7 @@
 }
 
 #subSection {
+    padding: 0 30px 0 30px;
     height: 80%;
     display: flex;
 }
@@ -51,4 +53,10 @@
 
 .illustration {
     width: 30vw;
+}
+
+#waves {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
