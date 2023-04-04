@@ -14,11 +14,11 @@ export default function SectionTwo() {
                 </Box>
                 <Box id={styles.boxSubSection}>
                     <Box id={styles.boxSubsection1}>
-                        <Typography variant="h4" color="initial">Vous devez répondre à 20 questions pour déterminer votre niveau de développement personnel.</Typography>
+                        <Typography className={styles.typoFunctioning} variant="h4" color="initial">Vous devez répondre à 20 questions pour déterminer votre niveau de développement personnel.</Typography>
                         <img className={styles.illustration1} alt="Illustration d'une progression" src={illustration1} />
                     </Box>
                     <Box id={styles.boxSubsection2}>
-                        <Typography variant="h4" color="initial">Vous obtenez un résultat sous forme de pourcentage pour chaque aspect du développement personnel.</Typography>
+                        <Typography className={styles.typoFunctioning} variant="h4" color="initial">Vous obtenez un résultat sous forme de pourcentage pour chaque aspect du développement personnel.</Typography>
                         <img className={styles.illustration2} alt="Illustration d'une progression" src={illustration2} />
                     </Box>
                     <Box id={styles.boxButton}>
