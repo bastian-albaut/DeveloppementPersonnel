@@ -2,10 +2,17 @@ import { Box, Button, Typography } from "@mui/material"
 import styles from "../../styles/components/homepage/sectionTwo.module.scss"
 import illustration1 from "../../assets/homepage/undraw_questions_re_1fy7.svg"
 import illustration2 from "../../assets/homepage/undraw_percentages_re_a1ao.svg"
+import { useNavigate } from "react-router-dom"
 
 
 export default function SectionTwo() {
     
+    const navigate = useNavigate()
+
+    const handleStartQuiz = () => {
+        navigate("/quiz");
+    }
+
     return(
         <>
             <Box id={styles.sectionTwo}>
@@ -22,7 +29,7 @@ export default function SectionTwo() {
                         <img className={styles.illustration2} alt="Illustration d'une progression" src={illustration2} />
                     </Box>
                     <Box id={styles.boxButton}>
-                        <Button className={styles.containedButton} variant="contained" color="primary">
+                        <Button className={styles.containedButton} variant="contained" color="primary" onClick={handleStartQuiz}>
                             Commencer le quiz !
                         </Button>
                         <Button className={styles.outlinedButton} variant="outlined" color="primary">

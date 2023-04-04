@@ -2,8 +2,10 @@ import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/s
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 
-import HomePage from "./pages/homepage/Homepage";
 import "./styles/styles.scss"
+
+import HomePage from "./pages/homepage/Homepage";
+import Quiz from './pages/quiz/Quiz';
 
 let theme = createTheme({
   palette: {
@@ -100,6 +102,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} width="100%"/>
+            <Route path="/quiz" element={<Quiz />} width="100%"/>
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>
