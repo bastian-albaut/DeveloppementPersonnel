@@ -16,14 +16,14 @@
 
 #sectionAnswers {
     margin: 50px 0 50px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-#buttonAnswer1, #buttonAnswer3 {
-    margin-right: 30px;
-}
-
-#buttonAnswer3, #buttonAnswer4 {
-    margin-top: 30px;
+#sectionAnswers > * {
+    flex-basis: 45%;
+    margin: 10px;
 }
 
 #sectionButton {
