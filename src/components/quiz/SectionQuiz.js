@@ -3,11 +3,11 @@ import React from "react";
 import styles from "../../styles/components/quiz/sectionQuiz.module.scss"
 
 
-export default function SectionQuiz() {
+export default function SectionQuiz(props) {
     return (
         <Box id={styles.sectionQuiz}>
             <Box id={styles.sectionQuestion}>
-                <Typography id={styles.typoQuestion} variant="h1" color="initial">Lorem ipsum dolor sit amet&nbsp;?</Typography>
+                <Typography id={styles.typoQuestion} variant="h1" color="initial">{props.data.question}</Typography>
             </Box>
             <Box id={styles.sectionAnswers}>
                 <Box id={styles.subSectionAnswers1}>
@@ -20,7 +20,7 @@ export default function SectionQuiz() {
                 </Box>
             </Box>
             <Box id={styles.sectionButton}>
-                <Button variant="contained" size="large" color="primary">Suivant</Button>
+                <Button variant="contained" size="large" color="primary" onClick={props.handleNextQuiz}>Suivant</Button>
             </Box>
         </Box>
     )
