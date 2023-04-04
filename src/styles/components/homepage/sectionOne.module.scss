@@ -7,6 +7,7 @@
 #typoLogo {
     text-align: center;
     padding: 20px 0 20px 0;
+    font-size: 20px;
 }
 
 #subSection {
@@ -30,6 +31,14 @@
 
 #boxTitle {
     margin-bottom: 30px;
+}
+
+#typoTitle {
+    font-size: 25px;
+}
+
+#typoSubtitle {
+    font-size: 15px
 }
 
 #boxSubtitle {
@@ -59,4 +68,114 @@
     width: 100%;
     position: absolute;
     bottom: 0;
+}
+
+/* MEDIA QUERIES */
+
+/* DEFAULT */
+/* Extra small devices (phones, 480px and down) */
+@media only screen and (max-width: 480px){
+    .illustration {
+        width: 80vw;
+    }
+}
+
+/* Small devices (phones, between 480px and 600px) */
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    #typoLogo {
+        font-size: 21px;
+    }
+    
+    #typoTitle {
+        font-size: 27px;
+    }
+    
+    #typoSubtitle {
+        font-size: 16px
+    }
+
+    .illustration {
+        width: 65vw;
+    }
+}
+
+/* Extra Small, Small and edium devices (smartphone, portrait tablets and large phones, less than 768px) */
+@media only screen and (max-width: 768px) {
+    #subSection {
+        flex-direction: column;
+    }
+
+    #subSectionRight {
+        flex-direction: row;
+        flex-grow: 1;
+    }
+    
+    #subSectionLeft {
+        flex-grow: 50;
+        margin: 0;
+    }
+}
+
+/* Medium devices (portrait tablets and large phones, between 600px and 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    #typoLogo {
+        font-size: 23px;
+    }
+    
+    #typoTitle {
+        font-size: 31px;
+    }
+    
+    #typoSubtitle {
+        font-size: 17px
+    }
+
+    .illustration {
+        width: 50vw;
+    }
+}
+
+/* Large devices (landscape tablets, between 768px and 992px) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    #typoLogo {
+        font-size: 25px;
+    }
+    
+    #typoTitle {
+        font-size: 35px;
+    }
+    
+    #typoSubtitle {
+        font-size: 19px
+    }
+}
+
+/* Extra large devices (laptops/desktops, between 992px and 1200px) */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    #typoLogo {
+        font-size: 27px;
+    }
+    
+    #typoTitle {
+        font-size: 40px;
+    }
+    
+    #typoSubtitle {
+        font-size: 22px
+    }
+}
+
+/* Extra extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #typoLogo {
+        font-size: 30px;
+    }
+    
+    #typoTitle {
+        font-size: 45px;
+    }
+    
+    #typoSubtitle {
+        font-size: 25px
+    }
 }

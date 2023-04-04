@@ -12,10 +12,10 @@ export default function SectionOne() {
                 <Box id={styles.subSection}>
                     <Box id={styles.subSectionLeft}>
                         <Box id={styles.boxTitle}>
-                            <Typography variant="h1" color="initial">Lorem Ipsum Dolor Sit Amet</Typography>
+                            <Typography id={styles.typoTitle} variant="h1" color="initial">Évoluer Ensemble : La Plateforme de Développement Personnel Collaborative</Typography>
                         </Box>
                         <Box id={styles.boxSubtitle}>
-                            <Typography variant="h2" color="initial">Lorem Ipsum Dolor Sit Amet</Typography>
+                            <Typography id={styles.typoSubtitle} variant="h2" color="initial">Trouvez votre chemin vers l'épanouissement personnel grâce à notre quiz, nos articles rédigés par des professionnels, et notre communauté bienveillante.</Typography>
 
                         </Box>
                         <Box id={styles.boxButton}>
