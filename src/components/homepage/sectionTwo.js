@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import styles from "../../styles/components/homepage/sectionTwo.module.scss"
 import illustration1 from "../../assets/homepage/undraw_questions_re_1fy7.svg"
 import illustration2 from "../../assets/homepage/undraw_percentages_re_a1ao.svg"
@@ -21,7 +21,14 @@ export default function SectionTwo() {
                         <Typography variant="h4" color="initial">Vous obtenez un résultat sous forme de pourcentage pour chaque aspect du développement personnel.</Typography>
                         <img className={styles.illustration2} alt="Illustration d'une progression" src={illustration2} />
                     </Box>
-                    <Typography id={styles.typoResult} variant="h3" color="initial">Vous pourrez ensuite accéder à une sélection d'articles et d'astuces pour vous !</Typography>
+                    <Box id={styles.boxButton}>
+                        <Button className={styles.containedButton} variant="contained" color="primary">
+                            Commencer le quiz !
+                        </Button>
+                        <Button className={styles.outlinedButton} variant="outlined" color="primary">
+                            J'ai déjà un compte
+                        </Button>
+                    </Box>
                 </Box>
             </Box>
         </>

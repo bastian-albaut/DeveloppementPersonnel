@@ -41,7 +41,13 @@
     margin-right: 50px;
 }
 
-#typoResult {
-    text-align: center;
-    margin-top: 100px;
+#boxButton {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containedButton {
+    margin-bottom: 10px;
 }
