@@ -87,8 +87,21 @@ let theme = createTheme({
       ].join(','),
     },
     caption: {
-      fontFamily: 'Fresca'
+      fontFamily: [
+        'Raleway',
+        'sans-serif',
+      ].join(','),
     },
+    button: {
+      fontFamily: [
+        'Fredoka',
+        'cursive',
+      ].join(','),
+      fontWeight: "bold",
+    }
+  },
+  shape: {
+    borderRadius: 30
   },
 });
 
