@@ -1,23 +1,33 @@
 @import "../../abstract/variables.scss";
 
-#toolbar {
+#sectionQuiz {
     display: flex;
-    justify-content: space-between;
-    min-height: $minHeightAppBar;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15% 0 15%;
+    height: calc(100vh - $minHeightAppBar);
 }
 
-#backIcon {
-    transform: scale(1.2);
-}
 
-#typoTitle {
+#typoQuestion {
     text-align: center;
-    flex-grow: 1;
-    margin-left: 60px;
 }
 
-#buttonLogin {
-    text-transform: none;
+#sectionAnswers {
+    margin: 50px 0 50px 0;
+}
+
+#buttonAnswer1, #buttonAnswer3 {
+    margin-right: 30px;
+}
+
+#buttonAnswer3, #buttonAnswer4 {
+    margin-top: 30px;
+}
+
+#sectionButton {
+    padding-bottom: $minHeightAppBar;
 }
 
 /* MEDIA QUERIES */
@@ -25,42 +35,28 @@
 /* DEFAULT */
 /* Extra small devices (phones, 480px and down) */
 @media only screen and (max-width: 480px){
-    #typoTitle {
-        display: none;
-    }
 }
 
 /* Small devices (phones, between 480px and 600px) */
 @media only screen and (min-width: 480px) and (max-width: 600px) {
-    #typoTitle {
-        font-size: 19px;
-    }
 }
 
 /* Medium devices (portrait tablets and large phones, between 600px and 768px) */
 @media only screen and (min-width: 600px) and (max-width: 768px) {
-    #typoTitle {
-        font-size: 23px;
-    }
+    
 }
 
 /* Large devices (landscape tablets, between 768px and 992px) */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
-    #typoTitle {
-        font-size: 25px;
-    }
+    
 }
 
 /* Extra large devices (laptops/desktops, between 992px and 1200px) */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    #typoTitle {
-        font-size: 27px;
-    }
+    
 }
 
 /* Extra extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    #typoTitle {
-        font-size: 30px;
-    }
+    
 }
