@@ -1,9 +1,16 @@
 import { Box, Typography, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/components/quiz/sectionQuiz.module.scss"
 
 
 export default function SectionQuiz(props) {
+
+    const [currentIndexActiveButton, setCurrentIndexActiveButton] = useState(null)
+
+    const handleActiveButton = (index) => {
+        setCurrentIndexActiveButton(index);
+    }
+
     return (
         <Box id={styles.sectionQuiz}>
             <Box id={styles.sectionQuestion}>
@@ -11,11 +18,11 @@ export default function SectionQuiz(props) {
             </Box>
             <Box id={styles.sectionAnswers}>
                 {props.data.answers.map((answer, index) => (
-                    <Button className={styles.buttonAnswer} variant="outlined" color="primary">{answer.text}</Button>
+                    <Button className={styles.buttonAnswer}  variant={currentIndexActiveButton === index ? "contained" : "outlined"} color="primary" onClick={() => handleActiveButton(index) }>{answer.text}</Button>
                 ))}
             </Box>
             <Box id={styles.sectionButton}>
-                <Button variant="contained" size="large" color="primary" onClick={props.handleNextQuiz}>Suivant</Button>
+                <Button {...(currentIndexActiveButton === null && {disabled: true})} variant="contained" size="large" color="primary" onClick={props.handleNextQuiz}>Suivant</Button>
             </Box>
         </Box>
     )
