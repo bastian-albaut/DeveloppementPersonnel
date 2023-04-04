@@ -10,7 +10,7 @@ export default function SectionTwo() {
         <>
             <Box id={styles.sectionTwo}>
                 <Box id={styles.boxTitle}>
-                    <Typography id={styles.title} variant="h2" color="initial">Comment ça fonctionne ?</Typography>
+                    <Typography id={styles.title} variant="h2" color="initial">Comment ça fonctionne&nbsp;?</Typography>
                 </Box>
                 <Box id={styles.boxSubSection}>
                     <Box id={styles.boxSubsection1}>
