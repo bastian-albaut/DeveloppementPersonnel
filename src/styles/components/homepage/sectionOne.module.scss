@@ -35,6 +35,7 @@
 
 #typoTitle {
     font-size: 25px;
+    line-height: 1.4;
 }
 
 #typoSubtitle {
@@ -68,6 +69,7 @@
     width: 100%;
     position: absolute;
     bottom: 0;
+    margin-bottom: -1px;
 }
 
 /* MEDIA QUERIES */
@@ -76,7 +78,7 @@
 /* Extra small devices (phones, 480px and down) */
 @media only screen and (max-width: 480px){
     .illustration {
-        width: 80vw;
+        width: 65vw;
     }
 }
 
@@ -95,7 +97,7 @@
     }
 
     .illustration {
-        width: 65vw;
+        width: 55vw;
     }
 }
 
@@ -108,6 +110,7 @@
     #subSectionRight {
         flex-direction: row;
         flex-grow: 1;
+        margin-bottom: 30px;
     }
     
     #subSectionLeft {
@@ -131,7 +134,7 @@
     }
 
     .illustration {
-        width: 50vw;
+        width: 45vw;
     }
 }
 

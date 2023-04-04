@@ -21,7 +21,7 @@ export default function SectionOne(props) {
                         <Box id={styles.boxButton}>
                             <Box id={styles.boxButton2}>
                                 <Button className={styles.containedButton} variant="contained" color="primary" onClick={props.scrollBegin}>
-                                    Commencer
+                                    Découvrir
                                 </Button>
                                 <Button className={styles.outlinedButton} variant="outlined" color="primary">
                                     J'ai déjà un compte
