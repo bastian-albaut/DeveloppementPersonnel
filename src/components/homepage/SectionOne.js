@@ -8,7 +8,7 @@ export default function SectionOne(props) {
     return(
         <>
             <Box id={styles.sectionOne}>
-                <Typography id={styles.typoLogo} variant="h3" color="initial">Développement Personnel</Typography>
+                <Typography id={styles.typoLogo} variant="h6" color="initial">Développement Personnel</Typography>
                 <Box id={styles.subSection}>
                     <Box id={styles.subSectionLeft}>
                         <Box id={styles.boxTitle}>
