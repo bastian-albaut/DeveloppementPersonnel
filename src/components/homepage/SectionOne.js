@@ -3,7 +3,7 @@ import styles from "../../styles/components/homepage/sectionOne.module.scss"
 import illustration from "../../assets/homepage/undraw_in_progress_re_m1l6.svg"
 import waves from "../../assets/homepage/waves.svg"
 
-export default function SectionOne() {
+export default function SectionOne(props) {
     
     return(
         <>
@@ -20,7 +20,7 @@ export default function SectionOne() {
                         </Box>
                         <Box id={styles.boxButton}>
                             <Box id={styles.boxButton2}>
-                                <Button className={styles.containedButton} variant="contained" color="primary">
+                                <Button className={styles.containedButton} variant="contained" color="primary" onClick={props.scrollBegin}>
                                     Commencer
                                 </Button>
                                 <Button className={styles.outlinedButton} variant="outlined" color="primary">

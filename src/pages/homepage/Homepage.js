@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-// import "../../styles/styles.scss"
+import { scrollIntoView } from "seamless-scroll-polyfill";
+
 import SectionOne from '../../components/homepage/SectionOne';
 import SectionTwo from '../../components/homepage/sectionTwo';
 
 export default function HomePage() {
     
+    // Button "Commencer"
+    const refBegin = useRef(null);
+    const scrollBegin = () => {
+        scrollIntoView(refBegin.current, {behavior : "smooth"});
+        window.history.pushState(null, null, '#fonctionnement'); // Add a "#fonctionnement" to the URL
+    }
+
+    useEffect(() => {
+        if (window.location.hash === '#fonctionnement') {
+            scrollBegin();
+        }
+    }, []);
+
     return(
         <>
-            <SectionOne />
-            <SectionTwo />
+            <SectionOne scrollBegin={scrollBegin}/>
+            <SectionTwo refBegin={refBegin}/>
         </>
     );
 }

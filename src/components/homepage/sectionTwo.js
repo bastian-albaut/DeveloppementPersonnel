@@ -5,7 +5,7 @@ import illustration2 from "../../assets/homepage/undraw_percentages_re_a1ao.svg"
 import { useNavigate } from "react-router-dom"
 
 
-export default function SectionTwo() {
+export default function SectionTwo(props) {
     
     const navigate = useNavigate()
 
@@ -15,7 +15,7 @@ export default function SectionTwo() {
 
     return(
         <>
-            <Box id={styles.sectionTwo}>
+            <Box id={styles.sectionTwo} ref={props.refBegin}>
                 <Box id={styles.boxTitle}>
                     <Typography id={styles.title} variant="h2" color="initial">Comment ça fonctionne&nbsp;?</Typography>
                 </Box>
