@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "../../styles/components/general/appbar.module.scss"
 import { AppBar, Button, Icon, IconButton, Toolbar, Typography } from "@mui/material";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ArrowBack from '@mui/icons-material/ArrowBack';
 import { useNavigate } from "react-router-dom";
 
 export default function Appbar() {
@@ -23,7 +23,7 @@ export default function Appbar() {
                     aria-label="menu"
                     onClick={handleBackHomepage}
                 >
-                    <ChevronLeftIcon id={styles.backIcon}/>
+                    <ArrowBack id={styles.backIcon}/>
                 </IconButton>
                 <Typography id={styles.typoTitle} variant="h6" component="div">
                     Développement Personnel

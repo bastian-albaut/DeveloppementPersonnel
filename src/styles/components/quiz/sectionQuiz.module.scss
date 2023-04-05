@@ -30,6 +30,18 @@
     padding-bottom: $minHeightAppBar;
 }
 
+#iconBackQuestion {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    color: black;
+    transform: scale(3);
+}
+
+#iconBackQuestion:hover {
+    cursor: pointer;
+}
+
 /* MEDIA QUERIES */
 
 /* DEFAULT */

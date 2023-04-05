@@ -1,12 +1,12 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Icon } from "@mui/material";
 import React, { useState } from "react";
 import styles from "../../styles/components/quiz/sectionQuiz.module.scss"
-
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 export default function SectionQuiz(props) {
 
+    // Disable button "suivant" before selection of answer
     const [currentIndexActiveButton, setCurrentIndexActiveButton] = useState(null)
-
     const handleActiveButton = (index) => {
         setCurrentIndexActiveButton(index);
     }
@@ -24,6 +24,9 @@ export default function SectionQuiz(props) {
             <Box id={styles.sectionButton}>
                 <Button {...(currentIndexActiveButton === null && {disabled: true})} variant="contained" size="large" color="primary" onClick={props.handleNextQuiz}>Suivant</Button>
             </Box>
+            {props.displayIconBack && (
+                <ChevronLeftIcon id={styles.iconBackQuestion} onClick={props.handlePreviousQuiz}/>
+            )}
         </Box>
     )
 }
