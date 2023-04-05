@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import { scrollIntoView } from "seamless-scroll-polyfill";
 
-import SectionOne from '../../components/homepage/SectionOne';
-import SectionTwo from '../../components/homepage/sectionTwo';
+import SectionOne from '../components/homepage/SectionOne';
+import SectionTwo from '../components/homepage/sectionTwo';
 
 export default function HomePage() {
     

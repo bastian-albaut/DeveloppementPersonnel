@@ -4,8 +4,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 import "./styles/styles.scss"
 
-import HomePage from "./pages/homepage/Homepage";
-import Quiz from './pages/quiz/Quiz';
+import HomePage from "./pages/Homepage";
+import Quiz from './pages/Quiz';
+import QuizResult from './pages/QuizResult';
 
 let theme = createTheme({
   palette: {

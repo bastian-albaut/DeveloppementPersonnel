@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import Appbar from '../../components/general/Appbar';
-import SectionQuiz from '../../components/quiz/SectionQuiz';
+import Appbar from '../components/general/Appbar';
+import SectionQuiz from '../components/quiz/SectionQuiz';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import quiz from '../../assets/quiz/listQuestions';
+import quiz from '../assets/quiz/listQuestions';
 
-import styles from "../../styles/pages/quiz.module.scss"
-import ProgresBar from '../../components/quiz/ProgressBar';
+import styles from "../styles/pages/quiz.module.scss"
+import ProgresBar from '../components/quiz/ProgressBar';
+import { useNavigate } from 'react-router-dom';
 
 export default function Quiz() {
     
     const [currentQuiz, setCurrentQuiz] = useState(0);
 
     const handleNextQuiz = () => {
-        setCurrentQuiz((prevQuiz) => (prevQuiz < quiz.questions.length - 1 ? prevQuiz + 1 : 0));
-      };
+      if(currentQuiz + 1 === quiz.questions.length) {
+        handleEndQuiz();
+        return;
+      }
+      setCurrentQuiz((prevQuiz) => (prevQuiz < quiz.questions.length - 1 ? prevQuiz + 1 : 0));
+    };
+
+    const navigate = useNavigate()
+
+    const handleEndQuiz = () => {
+      navigate("/quiz/result/resultid");
+    }
 
     return(
         <>
