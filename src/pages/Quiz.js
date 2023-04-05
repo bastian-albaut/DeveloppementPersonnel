@@ -59,7 +59,7 @@ export default function Quiz() {
     return(
         <>
             <Appbar />
-            <ProgresBar valueProgress={currentQuiz * 5}/>
+            <ProgresBar valueProgress={currentQuiz * (100 / quiz.questions.length)}/>
             <AnimatePresence mode="wait" id={styles.animatePresence} key={orientationAnimation}>
                 <motion.div
                     key={currentQuiz}
