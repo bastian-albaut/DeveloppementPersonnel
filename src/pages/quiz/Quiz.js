@@ -3,7 +3,10 @@ import Appbar from '../../components/general/Appbar';
 import SectionQuiz from '../../components/quiz/SectionQuiz';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import quiz from '../../assets/quiz/listQuestions';
+
 import styles from "../../styles/pages/quiz.module.scss"
+import ProgresBar from '../../components/quiz/ProgressBar';
 
 export default function Quiz() {
     
@@ -13,42 +16,10 @@ export default function Quiz() {
         setCurrentQuiz((prevQuiz) => (prevQuiz < quiz.questions.length - 1 ? prevQuiz + 1 : 0));
       };
 
-      const quiz = {
-        questions: [
-          {
-            question: "What is the capital of France?",
-            answers: [
-              { text: "London", correct: false },
-              { text: "Paris", correct: true },
-              { text: "Berlin", correct: false },
-              { text: "Madrid", correct: false }
-            ]
-          },
-          {
-            question: "What is the largest planet in our solar system?",
-            answers: [
-              { text: "Jupiter", correct: true },
-              { text: "Mars", correct: false },
-              { text: "Venus", correct: false },
-              { text: "Neptune", correct: false }
-            ]
-          },
-          {
-            question: "Who wrote the novel 'To Kill a Mockingbird'?",
-            answers: [
-              { text: "Harper Lee", correct: true },
-              { text: "F. Scott Fitzgerald", correct: false },
-              { text: "William Faulkner", correct: false },
-              { text: "Ernest Hemingway", correct: false }
-            ]
-          }
-        ]
-      };
-      
-
     return(
         <>
             <Appbar />
+            <ProgresBar valueProgress={currentQuiz * 5}/>
             <AnimatePresence mode="wait" id={styles.animatePresence}>
                 <motion.div
                     key={currentQuiz}

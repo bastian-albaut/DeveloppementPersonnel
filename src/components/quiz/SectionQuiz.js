@@ -18,7 +18,7 @@ export default function SectionQuiz(props) {
             </Box>
             <Box id={styles.sectionAnswers}>
                 {props.data.answers.map((answer, index) => (
-                    <Button className={styles.buttonAnswer}  variant={currentIndexActiveButton === index ? "contained" : "outlined"} color="primary" onClick={() => handleActiveButton(index) }>{answer.text}</Button>
+                    <Button key={index} className={styles.buttonAnswer}  variant={currentIndexActiveButton === index ? "contained" : "outlined"} color="primary" onClick={() => handleActiveButton(index) }>{answer.text}</Button>
                 ))}
             </Box>
             <Box id={styles.sectionButton}>
