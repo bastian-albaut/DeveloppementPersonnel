@@ -6,9 +6,9 @@ import styles from "../../styles/components/quizResult/circularProgressWithLabel
 export default function CircularProgressWithLabel(props) {
   return (
     <Box id={styles.boxCircularProgress}>
-      <CircularProgress variant="determinate" {...props} size={100}/>
+      <CircularProgress id={styles.circularProgress} variant="determinate" {...props} size={100}/>
       <Box id={styles.boxTextCircularProgress}>
-        <Typography id={styles.typoTextCircularProgress} variant="caption" component="div" color="text.secondary">
+        <Typography id={styles.typoTextCircularProgress} variant="caption" component="div" color="text.primary">
           {`${Math.round(props.value)}%`}
         </Typography>
       </Box>

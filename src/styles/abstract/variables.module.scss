@@ -1,0 +1,17 @@
+$heightProgressBar: 5px;
+$minHeightAppBarSmallScreen: 56px;
+$minHeightAppBarWideScreen: 64px;
+
+$primaryColor: #DA2C38;
+$secondaryColor: #5BC0EB;
+$blackColor: #0F1314;
+$greyColor: #9DABB3;
+$whiteColor: #E4E8EB;
+
+:export {
+    primaryColor: $primaryColor;
+    secondaryColor: $secondaryColor;
+    blackColor: $blackColor;
+    greyColor: $greyColor;
+    whiteColor: $whiteColor;
+}

@@ -1,7 +1,10 @@
+@import '../../abstract/variables.module.scss';
+
 #sectionOne {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: $whiteColor;
 }
 
 #typoLogo {

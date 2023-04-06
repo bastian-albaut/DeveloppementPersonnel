@@ -1,3 +1,5 @@
+@import '../../abstract/variables.module.scss';
+
 $gapSizeWideScreen: 20px;
 $gapSizeSmallScreen: 10px;
 $paddingCard: 20px;
@@ -5,6 +7,7 @@ $paddingCard: 20px;
 
 #boxSection {
     padding: $paddingCard;
+    background-color: $whiteColor;
 }
 
 #typoTitle {

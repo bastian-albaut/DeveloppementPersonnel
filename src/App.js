@@ -8,26 +8,27 @@ import HomePage from "./pages/Homepage";
 import Quiz from './pages/Quiz';
 import QuizResult from './pages/QuizResult';
 
+import variables from "./styles/abstract/variables.module.scss"
+
+const { palette } = createTheme();
+
 let theme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
-      main: '#DA2C38',
+      main: variables.primaryColor,
     },
     secondary: {
-      main: '#226F54',
+      main: variables.secondaryColor,
     },
-    background1: {
-      main: '#3a4f41',
+    text: {
+      primary: variables.blackColor,
+      disabled: variables.greyColor,
     },
-    background2: {
-      main: '#48ACF0',
+    background: {
+      default: variables.whiteColor,
+      paper: variables.whiteColor,
     },
-    black: {
-      main: '#000000',
-    },
-    grey: {
-      main: '#7d7d7d',
-    }
   },
   breakpoints: {
     values: {

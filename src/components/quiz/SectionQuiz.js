@@ -14,7 +14,7 @@ export default function SectionQuiz(props) {
     return (
         <Box id={styles.sectionQuiz}>
             <Box id={styles.sectionQuestion}>
-                <Typography id={styles.typoQuestion} variant="h1" color="initial">{props.data.question}</Typography>
+                <Typography id={styles.typoQuestion} variant="h1" color="text.primary">{props.data.question}</Typography>
             </Box>
             <Box id={styles.sectionAnswers}>
                 {props.data.answers.map((answer, index) => (

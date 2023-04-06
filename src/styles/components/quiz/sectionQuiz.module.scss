@@ -1,4 +1,4 @@
-@import "../../abstract/variables.scss";
+@import "../../abstract/variables.module.scss";
 
 $gapSize : 10px;
 
@@ -9,6 +9,7 @@ $gapSize : 10px;
     align-items: center;
     padding: 0 15% 0 15%;
     height: calc(100vh - $minHeightAppBarWideScreen - $heightProgressBar);
+    background-color: $whiteColor;
 }
 
 #typoQuestion {

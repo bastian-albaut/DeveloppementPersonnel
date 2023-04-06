@@ -17,15 +17,15 @@ export default function SectionTwo(props) {
         <>
             <Box id={styles.sectionTwo} ref={props.refBegin}>
                 <Box id={styles.boxTitle}>
-                    <Typography id={styles.title} variant="h2" color="initial">Comment ça fonctionne&nbsp;?</Typography>
+                    <Typography id={styles.title} variant="h2" color="text.primary">Comment ça fonctionne&nbsp;?</Typography>
                 </Box>
                 <Box id={styles.boxSubSection}>
                     <Box id={styles.boxSubsection1}>
-                        <Typography className={styles.typoFunctioning} variant="h4" color="initial">Vous devez répondre à 20 questions pour déterminer votre niveau de développement personnel.</Typography>
+                        <Typography className={styles.typoFunctioning} variant="h4" color="text.primary">Vous devez répondre à 20 questions pour déterminer votre niveau de développement personnel.</Typography>
                         <img className={styles.illustration1} alt="Illustration d'une progression" src={illustration1} />
                     </Box>
                     <Box id={styles.boxSubsection2}>
-                        <Typography className={styles.typoFunctioning} variant="h4" color="initial">Vous obtenez un résultat sous forme de pourcentage pour chaque aspect du développement personnel.</Typography>
+                        <Typography className={styles.typoFunctioning} variant="h4" color="text.primary">Vous obtenez un résultat sous forme de pourcentage pour chaque aspect du développement personnel.</Typography>
                         <img className={styles.illustration2} alt="Illustration d'une progression" src={illustration2} />
                     </Box>
                     <Box id={styles.boxButton}>

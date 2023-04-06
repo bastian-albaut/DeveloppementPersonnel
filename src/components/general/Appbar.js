@@ -25,10 +25,10 @@ export default function Appbar() {
                 >
                     <ArrowBack id={styles.backIcon}/>
                 </IconButton>
-                <Typography id={styles.typoTitle} variant="h6" component="div">
+                <Typography id={styles.typoTitle} variant="h6" component="div" color="text.primary">
                     Développement Personnel
                 </Typography>
-                <Button id={styles.buttonLogin} variant="text" color="inherit"><Typography color="inherit">Connexion</Typography></Button>
+                <Button id={styles.buttonLogin} variant="text" color="inherit"><Typography color="text.primary">Connexion</Typography></Button>
             </Toolbar>
         </AppBar>
     )
