@@ -1,0 +1,34 @@
+@import "./sectionQuizResult.module.scss";
+
+#cardResult {
+    flex-basis: calc(50% - $gapSizeWideScreen - 2*$paddingCard);
+    padding: 20px;
+    background-color: #fff8f8;
+}
+
+#typoCategorieName {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Fredoka", cursive;
+}
+
+#boxSubResult {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#typoCategorieName {
+    margin-left: 10px;
+}
+
+#typoCategorieDescription {
+    text-align: justify;
+}
+
+/* Extra Small, Small and medium devices (smartphone, portrait tablets and large phones, less than 768px) */
+@media only screen and (max-width: 768px) {
+    #cardResult {
+        flex-basis: calc(100% - $gapSizeSmallScreen - 2*$paddingCard);
+    }
+}

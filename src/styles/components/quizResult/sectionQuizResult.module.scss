@@ -1,8 +1,10 @@
-$gapSizeWideScreen: 50px;
-$gapSizeSmallScreen: 40px;
+$gapSizeWideScreen: 20px;
+$gapSizeSmallScreen: 10px;
+$paddingCard: 20px;
+
 
 #boxSection {
-    padding: 20px;
+    padding: $paddingCard;
 }
 
 #typoTitle {
@@ -11,41 +13,13 @@ $gapSizeSmallScreen: 40px;
 
 #boxSubSection {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: $gapSizeWideScreen;
-}
-
-#boxResult {
-    flex-basis: calc(50% - $gapSizeWideScreen);
-}
-
-#typoCategorieName {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: "Fredoka", cursive;
-}
-
-#boxSubResult {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#typoCategorieName {
-    margin-left: 10px;
-}
-
-#typoCategorieDescription {
-    text-align: justify;
+    justify-content: center
 }
 
 /* Extra Small, Small and medium devices (smartphone, portrait tablets and large phones, less than 768px) */
 @media only screen and (max-width: 768px) {
-    #boxResult {
-        flex-basis: calc(100% - $gapSizeSmallScreen);
-    }
-
     #boxSubSection {
         gap: $gapSizeSmallScreen;
     }
