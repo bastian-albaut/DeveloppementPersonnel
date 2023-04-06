@@ -1,0 +1,22 @@
+#boxCircularProgress {
+    position: relative;
+    display: inline-flex;
+}
+
+#boxTextCircularProgress {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#typoTextCircularProgress {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: "Fredoka", cursive;
+    color: black;
+}
