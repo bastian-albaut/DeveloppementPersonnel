@@ -1,7 +1,3 @@
-$minHeightAppBar: 64px;
 $heightProgressBar: 5px;
-
-/* Small devices (phones, between 480px and 600px) */
-@media only screen and (max-width: 600px) {
-    $minHeightAppBar: 56px;
-}
+$minHeightAppBarSmallScreen: 56px;
+$minHeightAppBarWideScreen: 64px;

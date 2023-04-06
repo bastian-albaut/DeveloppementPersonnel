@@ -3,7 +3,7 @@
 #toolbar {
     display: flex;
     justify-content: space-between;
-    min-height: $minHeightAppBar;
+    min-height: $minHeightAppBarWideScreen;
 }
 
 #backIcon {
@@ -34,6 +34,13 @@
 @media only screen and (min-width: 480px) and (max-width: 600px) {
     #typoTitle {
         font-size: 19px;
+    }
+}
+
+/* Small and Extra Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    #toolbar {
+        min-height: $minHeightAppBarSmallScreen;
     }
 }
 

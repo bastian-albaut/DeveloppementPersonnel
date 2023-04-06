@@ -8,9 +8,8 @@ $gapSize : 10px;
     justify-content: center;
     align-items: center;
     padding: 0 15% 0 15%;
-    height: calc(100vh - $minHeightAppBar - $heightProgressBar);
+    height: calc(100vh - $minHeightAppBarWideScreen - $heightProgressBar);
 }
-
 
 #typoQuestion {
     text-align: center;
@@ -29,7 +28,7 @@ $gapSize : 10px;
 }
 
 #sectionButton {
-    padding-bottom: $minHeightAppBar;
+    padding-bottom: $minHeightAppBarWideScreen;
 }
 
 #iconBackQuestion {
@@ -50,5 +49,13 @@ $gapSize : 10px;
 @media only screen and (max-width: 600px) {
     #sectionAnswers > * {
         flex-basis: calc(100% - $gapSize);
+    }
+
+    #sectionQuiz {
+        height: calc(100vh - $minHeightAppBarSmallScreen - $heightProgressBar);
+    }
+
+    #sectionButton {
+        padding-bottom: $minHeightAppBarSmallScreen;
     }
 }
