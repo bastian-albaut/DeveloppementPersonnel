@@ -4,6 +4,7 @@
     flex-basis: calc(50% - $gapSizeWideScreen - 2*$paddingCard);
     padding: 20px;
     background-color: #fff8f8;
+    max-width: 500px;
 }
 
 #typoCategorieName {

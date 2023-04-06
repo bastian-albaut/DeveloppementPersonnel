@@ -14,6 +14,7 @@ export default function SectionQuizResult() {
     return(
         <Box id={styles.boxSection}>
             <Typography id={styles.typoTitle} variant="h1" color="initial">Résultat</Typography>
+            <Typography id={styles.typoSubTitle} variant="subtitle1" color="initial">Estimation de votre niveau pour tous les apects du développement personnel.</Typography>
             <Box id={styles.boxSubSection}>
                 {result.scores.map((score, index) => {
                     return (
