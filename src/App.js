@@ -9,6 +9,7 @@ import Quiz from './pages/Quiz';
 import QuizResult from './pages/QuizResult';
 
 import variables from "./styles/abstract/variables.module.scss"
+import Dashboard from './pages/Dashboard';
 
 const { palette } = createTheme();
 
@@ -119,6 +120,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} width="100%"/>
             <Route path="/quiz" element={<Quiz />} width="100%"/>
             <Route path="/quiz/result/resultid" element={<QuizResult />} width="100%"/>
+            <Route path="/tableaudebord/userid" element={<Dashboard />} width="100%"/>
             <Route path="*" element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>
