@@ -32,11 +32,11 @@ let theme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 480,
-      sm: 600,
-      md: 768,
-      lg: 992,
-      xl: 1200,
+      xs: 0,
+      sm: 480,
+      md: 600,
+      lg: 768,
+      xl: 992,
     },
   },
   typography: {
