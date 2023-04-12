@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import CardViewWideScreen from "../article/cardViewWideScreen";
@@ -50,27 +50,39 @@ export default function SectionArticles() {
         />
       ));
 
+      const [windowSize, setWindowSize] = useState(null)
 
+      const handleResize = () => {
+        setWindowSize(window.innerWidth)
+      }
+
+      useEffect(() => {
+          window.addEventListener('resize', handleResize)
+          return () => window.removeEventListener('resize', handleResize)
+      }, [])
 
     return (
         <Box>
             <Typography variant="h3" color="initial">Sélection d'articles pour moi:</Typography>
-            <AliceCarousel 
-                mouseTracking 
-                items={items1} 
-                responsive={responsive}
-                autoPlay={true}
-                autoPlayInterval="1500"
-                disableButtonsControls={true}
-                disableDotsControls={true}
-                infinite={true}
-                keyboardNavigation={true}
-            />
-            <Box>
-            {items2.map((item, index) => (
-                <div key={index}>{item}</div>
-            ))}
-            </Box> 
+            {windowSize > 768 ? (
+              <AliceCarousel 
+                  mouseTracking 
+                  items={items1} 
+                  responsive={responsive}
+                  autoPlay={true}
+                  autoPlayInterval="1500"
+                  disableButtonsControls={true}
+                  disableDotsControls={true}
+                  infinite={true}
+                  keyboardNavigation={true}
+              />
+            ) : (
+              <Box>
+              {items2.map((item, index) => (
+                  <div key={index}>{item}</div>
+              ))}
+              </Box> 
+            )}
         </Box>
     )
 }
