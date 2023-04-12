@@ -5,6 +5,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import CardViewWideScreen from "../article/cardViewWideScreen";
 import CardViewSmallScreen from "../article/cardViewSmallScreen";
 import articles from "../../assets/article/listArticles";
+import styles from "../../styles/components/dashboard/sectionArticles.module.scss"
 
 export default function SectionArticles() {
     const responsive = {
@@ -62,7 +63,7 @@ export default function SectionArticles() {
       }, [])
 
     return (
-        <Box>
+        <Box id={styles.boxSection}>
             <Typography variant="h3" color="initial">Sélection d'articles pour moi:</Typography>
             {windowSize > 768 ? (
               <AliceCarousel 
@@ -77,9 +78,13 @@ export default function SectionArticles() {
                   keyboardNavigation={true}
               />
             ) : (
-              <Box>
-              {items2.map((item, index) => (
-                  <div key={index}>{item}</div>
+              <Box id={styles.boxSubSection}>
+                <hr className={styles.hr}/>
+              {items2.slice(0,4).map((item, index) => (
+                  <div key={index}>
+                    {item}
+                    <hr className={styles.hr}/>
+                  </div>
               ))}
               </Box> 
             )}
