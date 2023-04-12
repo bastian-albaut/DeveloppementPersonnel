@@ -64,9 +64,10 @@ export default function SectionArticles() {
 
     return (
         <Box id={styles.boxSection}>
-            <Typography variant="h3" color="initial">Sélection d'articles pour moi:</Typography>
+            <Typography id={styles.typoTitle} variant="h3" color="initial">Sélection d'articles pour moi:</Typography>
             {windowSize > 768 ? (
               <AliceCarousel 
+                  id={styles.carousel}
                   mouseTracking 
                   items={items1} 
                   responsive={responsive}

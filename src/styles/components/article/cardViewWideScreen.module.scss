@@ -6,7 +6,7 @@ $marginCard: 5px;
 #card {
     margin: 0 $marginCard 0 $marginCard;
     border-radius: 0;
-    max-height: 200px;
+    max-height: 300px;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -15,6 +15,14 @@ $marginCard: 5px;
 
 #image {
     height: 100%;
+}
+
+#boxSection {
+    padding: 10px;
+}
+
+#typoTitle {
+    margin: 10px 0 15px 0;
 }
 
 /* MEDIA QUERIES */
