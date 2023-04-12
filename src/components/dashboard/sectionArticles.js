@@ -51,7 +51,7 @@ export default function SectionArticles() {
         />
       ));
 
-      const [windowSize, setWindowSize] = useState(null)
+      const [windowSize, setWindowSize] = useState(window.innerWidth)
 
       const handleResize = () => {
         setWindowSize(window.innerWidth)
