@@ -1,0 +1,35 @@
+
+#card {
+    display: flex;
+}
+
+#boxSection {
+    padding: 10px;
+}
+
+#boxSubSection {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#boxThumb {
+    display: flex;
+}
+
+#thumbUpIcon:hover , #thumbDownIcon:hover {
+    cursor: pointer;
+}
+
+#thumbUpIcon {
+    color: green;
+}
+
+#thumbDownIcon {
+    color: red;
+    margin-left: 10px;
+}
+
+#hr {
+    margin: 5px 0 5px 0
+}

@@ -1,0 +1,81 @@
+@import "../../abstract/variables.module.scss";
+@import "../../pages/dashboard.module.scss";
+
+$marginCard: 5px;
+
+#card {
+    margin: 0 $marginCard 0 $marginCard;
+    border-radius: 0;
+    max-height: 300px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: $greyColor;
+}
+
+#boxSection {
+    padding: 10px;
+}
+
+#boxSubSection {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#boxThumb {
+    display: flex;
+}
+
+#thumbUpIcon:hover , #thumbDownIcon:hover {
+    cursor: pointer;
+}
+
+#thumbUpIcon {
+    color: green;
+}
+
+#thumbDownIcon {
+    color: red;
+    margin-left: 10px;
+}
+
+
+/* MEDIA QUERIES */
+
+/* DEFAULT */
+/* Extra small devices (phones, 480px and down) */
+@media only screen and (max-width: 480px){
+    
+}
+
+/* Small devices (phones, between 480px and 600px) */
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    
+}
+
+/* Medium devices (portrait tablets and large phones, between 600px and 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+
+}
+
+/* Large devices (landscape tablets, between 768px and 992px) */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    #card {
+        width: calc((100vw / 2) - 2*($marginCard) - 2*($marginDashboard));
+    }
+}
+
+/* Extra large devices (laptops/desktops, between 992px and 1200px) */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    #card {
+        width: calc((100vw / 3) - 2*($marginCard) - 2*($marginDashboard));
+    }
+}
+
+/* Extra extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #card {
+        width: calc((100vw / 4) - 2*($marginCard) - 2*($marginDashboard));
+    }
+}

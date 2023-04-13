@@ -1,5 +1,6 @@
 import React from "react";
 import SectionArticles from "../components/dashboard/sectionArticles";
+import SectionTips from "../components/dashboard/sectionTips";
 import Appbar from "../components/general/Appbar";
 import { Box } from "@mui/material";
 
@@ -11,6 +12,7 @@ export default function Dashboard() {
             <Appbar />
             <Box id={styles.generalBox}>
                 <SectionArticles />
+                <SectionTips />
             </Box>
         </>
     )
