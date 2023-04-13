@@ -2,8 +2,23 @@ import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Too
 import MenuIcon from '@mui/icons-material/Menu';
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const pages = ['Tableau de bord', 'Articles', 'Astuces'];
+const pages = [
+   {
+    name: 'Tableau de bord',
+    path : '/tableaudebord/userid'
+  }, 
+  {
+    name: 'Article',
+    path : '/tableaudebord/userid'
+  },
+  {
+    name: 'Astuces',
+    path : '/tableaudebord/userid'
+  }
+];
+
 const settings = ['Mon compte', 'Déconnexion'];
 
 export default function ToolbarConnected() {
@@ -24,6 +39,12 @@ export default function ToolbarConnected() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navigate = useNavigate()
+  const navigateNavMenu = (path) => {
+    handleCloseNavMenu();
+    navigate(path);
+  }
 
   return (
     <AppBar position="static">
@@ -74,11 +95,12 @@ export default function ToolbarConnected() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={() => navigateNavMenu(page.path)}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
+
             </Menu>
           </Box>
           <Typography
@@ -98,13 +120,13 @@ export default function ToolbarConnected() {
             Développement Personnel
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={index}
+                onClick={() => navigateNavMenu(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
