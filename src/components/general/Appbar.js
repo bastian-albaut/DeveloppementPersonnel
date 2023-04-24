@@ -8,7 +8,7 @@ import ToolbarDisconnected from "./ToolbarDisconnected";
 
 export default function Appbar() {
 
-    const [isConnected, setIsConnected] = useState(true);
+    const [isConnected, setIsConnected] = useState(false);
 
     return(
         <>

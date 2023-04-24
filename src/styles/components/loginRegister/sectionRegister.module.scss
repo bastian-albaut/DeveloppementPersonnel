@@ -1,0 +1,30 @@
+@import '../../abstract/variables.module.scss';
+
+#boxSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - $minHeightAppBarSmallScreen);
+}
+
+#typoTitle {
+    margin-bottom: 20px; 
+}
+
+#boxFormRegister {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#buttonRegister {
+    margin: 20px 0 50px 0;
+}
+
+/* Medium and Large devices (Tablets and laptops/desktops, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #boxSection {
+        height: calc(100vh - $minHeightAppBarWideScreen);
+    }
+}

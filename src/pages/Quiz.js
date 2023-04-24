@@ -45,7 +45,7 @@ export default function Quiz() {
     const navigate = useNavigate()
 
     const handleEndQuiz = () => {
-      navigate("/quiz/result/resultid");
+      navigate("/login");
     }
 
     // Change orientation of animation motion

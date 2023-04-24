@@ -1,0 +1,36 @@
+#file-input-container {
+    margin: 20px 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 2px dashed #ccc;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    &.is-drag-active {
+      border-color: #2196f3;
+      background-color: #e3f2fd;
+    }
+    &.is-drag-reject {
+      border-color: #ff1744;
+      background-color: #ffebee;
+    }
+  }
+  
+  
+  #file-input-label {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  #file-input-preview {
+    margin-top: 1rem;
+    img {
+      max-width: 100%;
+      max-height: 10rem;
+    }
+  }
+  
