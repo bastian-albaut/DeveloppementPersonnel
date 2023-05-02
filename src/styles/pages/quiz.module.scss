@@ -1,4 +1,21 @@
+@import "../abstract/variables.module.scss";
+
 #motionDiv {
-    // position: absolute;
     width: 100%;
+}
+
+#boxCircularProgress {
+    display: flex;
+    height: calc(100vh - $minHeightAppBarSmallScreen);
+}
+
+#circularProgress {
+    margin: auto;
+}
+
+/* Medium and Large devices (Tablets and laptops/desktops, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #boxCircularProgress {
+      height: calc(100vh - $minHeightAppBarWideScreen);
+  }
 }

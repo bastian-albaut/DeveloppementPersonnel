@@ -3,14 +3,31 @@ import Appbar from '../components/general/Appbar';
 import SectionQuiz from '../components/quiz/SectionQuiz';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import quiz from '../assets/quiz/listQuestions';
-
 import styles from "../styles/pages/quiz.module.scss"
 import ProgresBar from '../components/quiz/ProgressBar';
 import { useNavigate } from 'react-router-dom';
+import { getQuiz } from '../api';
+import { Box, CircularProgress } from '@mui/material';
 
 export default function Quiz() {
   
+  // Get data from API
+  const [quizData, setQuizData] = useState([]);
+  useEffect(() => {
+    const fetchQuiz = async () => {
+      try {
+        const quiz = await getQuiz();
+        if(quiz && quiz.data) {
+          setQuizData(quiz.data)
+        }
+      } catch (error) {
+          console.log(error)
+      }
+    }
+
+    fetchQuiz();
+  },[])
+
     // Display or not button to go to previous question
     const [displayIconBack, setDisplayIconBack] = useState(false);
 
@@ -18,12 +35,12 @@ export default function Quiz() {
     const [currentQuiz, setCurrentQuiz] = useState(0);
 
     const handleNextQuiz = () => {
-      if(currentQuiz + 1 === quiz.questions.length) {
+      if(currentQuiz + 1 === quizData.length) {
         handleEndQuiz();
         return;
       }
 
-      if(currentQuiz < quiz.questions.length-1) {
+      if(currentQuiz < quizData.length-1) {
         setOrientationAnimation("right");
         setCurrentQuiz((prevQuiz) => prevQuiz + 1);
         setDisplayIconBack(true);
@@ -59,19 +76,27 @@ export default function Quiz() {
     return(
         <>
             <Appbar />
-            <ProgresBar valueProgress={currentQuiz * (100 / quiz.questions.length)}/>
-            <AnimatePresence mode="wait" id={styles.animatePresence} key={orientationAnimation}>
-                <motion.div
-                    key={currentQuiz}
-                    initial={{ opacity: 0, x: orientationAnimation==="right" ? 300 : -300 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: orientationAnimation==="right" ? -300 : 300 }}
-                    transition={{ duration: directionUpdated ? 0.6 : 0.3 }}
-                    id={styles.motionDiv}
-                    >
-                    <SectionQuiz data={quiz.questions[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
-                </motion.div>
-            </AnimatePresence>
+            { quizData.length > 0 ? (
+              <>
+              <ProgresBar valueProgress={currentQuiz * (100 / quizData.length)}/>
+                <AnimatePresence mode="wait" id={styles.animatePresence} key={orientationAnimation}>
+                    <motion.div
+                        key={currentQuiz}
+                        initial={{ opacity: 0, x: orientationAnimation==="right" ? 300 : -300 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: orientationAnimation==="right" ? -300 : 300 }}
+                        transition={{ duration: directionUpdated ? 0.6 : 0.3 }}
+                        id={styles.motionDiv}
+                        >
+                        <SectionQuiz data={quizData[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
+                    </motion.div>
+                </AnimatePresence>
+              </>
+            ) : (
+              <Box id={styles.boxCircularProgress}>
+                <CircularProgress id={styles.circularProgress}/>
+              </Box>
+            )}
         </>
     );
 }
