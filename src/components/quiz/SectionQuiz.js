@@ -11,10 +11,16 @@ export default function SectionQuiz(props) {
         setCurrentIndexActiveButton(index);
     }
 
+    // Search last space before "?" and replace space by "&nbsp;"
+    const replaceLastSpace = (str) => {
+        const index = str.lastIndexOf(" ");
+        return str.substring(0, index) + "\u00A0" + str.substring(index + 1);
+    }
+
     return (
         <Box id={styles.sectionQuiz}>
             <Box id={styles.sectionQuestion}>
-                <Typography id={styles.typoQuestion} variant="h4" color="text.primary">{props.data.question}</Typography>
+                <Typography id={styles.typoQuestion} variant="h4" color="text.primary">{replaceLastSpace(props.data.question)}</Typography>
             </Box>
             <Box id={styles.sectionAnswers}>
                 {props.data.answers.map((answer, index) => (
