@@ -11,6 +11,15 @@ import { Box, CircularProgress } from '@mui/material';
 
 export default function Quiz() {
   
+  // Shuffle array
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+    
   // Get data from API
   const [quizData, setQuizData] = useState([]);
   useEffect(() => {
@@ -18,7 +27,7 @@ export default function Quiz() {
       try {
         const quiz = await getQuiz();
         if(quiz && quiz.data) {
-          setQuizData(quiz.data)
+          setQuizData(shuffleArray(quiz.data))
         }
       } catch (error) {
           console.log(error)
