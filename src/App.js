@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 
 import "./styles/styles.scss"
+import TokenContext from "./contexts/contextToken";
 
 import HomePage from "./pages/Homepage";
 import Quiz from './pages/Quiz';
@@ -111,21 +112,29 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme);
 
+const getToken = () => {
+  const tokenString = localStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken;
+};
+
 const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} width="100%"/>
-            <Route path="/quiz" element={<Quiz />} width="100%"/>
-            <Route path="/quiz/result/resultid" element={<QuizResult />} width="100%"/>
-            <Route path="/tableaudebord/userid" element={<Dashboard />} width="100%"/>
-            <Route path="/login" element={<LoginRegister />} width="100%"/>
-            <Route path="*" element={<Navigate replace to="/" />} />
-          </Routes>
-        </BrowserRouter>
+      <TokenContext.Provider value={getToken}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} width="100%"/>
+              <Route path="/quiz" element={<Quiz />} width="100%"/>
+              <Route path="/quiz/result/resultid" element={<QuizResult />} width="100%"/>
+              <Route path="/tableaudebord/userid" element={<Dashboard />} width="100%"/>
+              <Route path="/login" element={<LoginRegister />} width="100%"/>
+              <Route path="*" element={<Navigate replace to="/" />} />
+            </Routes>
+          </BrowserRouter>
+        </TokenContext.Provider>
       </StyledEngineProvider>
     </ThemeProvider>
   );
