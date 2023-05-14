@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Appbar from '../components/general/Appbar';
 import SectionQuiz from '../components/quiz/SectionQuiz';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,6 +8,7 @@ import ProgresBar from '../components/quiz/ProgressBar';
 import { useNavigate } from 'react-router-dom';
 import { getQuiz } from '../api';
 import { Box, CircularProgress } from '@mui/material';
+import TokenContext from '../contexts/contextToken';
 
 export default function Quiz() {
   
@@ -82,30 +83,43 @@ export default function Quiz() {
       setDirectionUpdated(false);
     }, [currentQuiz])
 
-    return(
-        <>
-            <Appbar />
-            { quizData.length > 0 ? (
-              <>
-              <ProgresBar valueProgress={currentQuiz * (100 / quizData.length)}/>
-                <AnimatePresence mode="wait" id={styles.animatePresence} key={orientationAnimation}>
-                    <motion.div
-                        key={currentQuiz}
-                        initial={{ opacity: 0, x: orientationAnimation==="right" ? 300 : -300 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: orientationAnimation==="right" ? -300 : 300 }}
-                        transition={{ duration: directionUpdated ? 0.6 : 0.3 }}
-                        id={styles.motionDiv}
-                        >
-                        <SectionQuiz data={quizData[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
-                    </motion.div>
-                </AnimatePresence>
-              </>
-            ) : (
-              <Box id={styles.boxCircularProgress}>
-                <CircularProgress id={styles.circularProgress}/>
-              </Box>
-            )}
-        </>
-    );
+
+    // Check if the user is login on mount
+    const [isConnected, setIsConnected] = useState(false);
+    const getToken = useContext(TokenContext);
+    useEffect(() => {
+        setIsConnected(getToken());
+    },[getToken])
+
+
+    if(isConnected) {
+      navigate('/quiz/result/resultid');
+    } else {
+      return(
+          <>
+              <Appbar />
+              { quizData.length > 0 ? (
+                <>
+                <ProgresBar valueProgress={currentQuiz * (100 / quizData.length)}/>
+                  <AnimatePresence mode="wait" id={styles.animatePresence} key={orientationAnimation}>
+                      <motion.div
+                          key={currentQuiz}
+                          initial={{ opacity: 0, x: orientationAnimation==="right" ? 300 : -300 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: orientationAnimation==="right" ? -300 : 300 }}
+                          transition={{ duration: directionUpdated ? 0.6 : 0.3 }}
+                          id={styles.motionDiv}
+                          >
+                          <SectionQuiz data={quizData[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
+                      </motion.div>
+                  </AnimatePresence>
+                </>
+              ) : (
+                <Box id={styles.boxCircularProgress}>
+                  <CircularProgress id={styles.circularProgress}/>
+                </Box>
+              )}
+          </>
+      );
+    }
 }
