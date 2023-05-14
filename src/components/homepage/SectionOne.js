@@ -23,7 +23,7 @@ export default function SectionOne(props) {
                                 <Button className={styles.containedButton} variant="contained" color="primary" onClick={props.scrollBegin}>
                                     Découvrir
                                 </Button>
-                                <Button className={styles.outlinedButton} variant="outlined" color="primary">
+                                <Button className={styles.outlinedButton} variant="outlined" color="primary" onClick={props.handleNavigateLogin}>
                                     J'ai déjà un compte
                                 </Button>
                             </Box>

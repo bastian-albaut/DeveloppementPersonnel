@@ -32,7 +32,7 @@ export default function SectionTwo(props) {
                         <Button className={styles.containedButton} variant="contained" color="primary" onClick={handleStartQuiz}>
                             Commencer le quiz !
                         </Button>
-                        <Button className={styles.outlinedButton} variant="outlined" color="primary">
+                        <Button className={styles.outlinedButton} variant="outlined" color="primary" onClick={props.handleNavigateLogin}>
                             J'ai déjà un compte
                         </Button>
                     </Box>

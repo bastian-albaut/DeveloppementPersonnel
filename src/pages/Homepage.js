@@ -4,6 +4,7 @@ import { scrollIntoView } from "seamless-scroll-polyfill";
 
 import SectionOne from '../components/homepage/SectionOne';
 import SectionTwo from '../components/homepage/sectionTwo';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
     
@@ -20,10 +21,16 @@ export default function HomePage() {
         }
     }, []);
 
+    // Navigate to the login page
+    const navigate = useNavigate();
+    const handleNavigateLogin = () => {
+        navigate('/login');
+    }
+
     return(
         <>
-            <SectionOne scrollBegin={scrollBegin}/>
-            <SectionTwo refBegin={refBegin}/>
+            <SectionOne scrollBegin={scrollBegin} handleNavigateLogin={handleNavigateLogin}/>
+            <SectionTwo refBegin={refBegin} handleNavigateLogin={handleNavigateLogin}/>
         </>
     );
 }
