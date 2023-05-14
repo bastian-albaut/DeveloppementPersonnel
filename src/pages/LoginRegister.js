@@ -11,7 +11,7 @@ import TokenContext from "../contexts/contextToken";
 
 export default function LoginRegister() {
 
-    const [haveAccount, setHaveAccount] = useState(false);
+    const [haveAccount, setHaveAccount] = useState(true);
 
     const [error, setError] = useState('');
 

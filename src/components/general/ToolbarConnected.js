@@ -19,8 +19,6 @@ const pages = [
   }
 ];
 
-const settings = ['Mon compte', 'Déconnexion'];
-
 export default function ToolbarConnected() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -39,6 +37,12 @@ export default function ToolbarConnected() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    localStorage.removeItem('token');
+    navigate('/');
+  }
 
   const navigate = useNavigate()
   const navigateNavMenu = (path) => {
@@ -153,11 +157,12 @@ export default function ToolbarConnected() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Mon compte</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Déconnexion</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
