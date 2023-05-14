@@ -13,9 +13,9 @@
 }
 
 #typoTitle {
-    text-align: center;
-    flex-grow: 1;
-    margin-left: 60px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     font-weight: bold;
 }
 
@@ -33,6 +33,8 @@
     }
 
     #typoTitle {
+        position: static;
+        transform: translateX(0);
         text-align: right;
         margin: 0;
     }

@@ -28,7 +28,6 @@ export default function ToolbarDisconnected() {
                 <Typography id={styles.typoTitle} variant="h6" component="div" color="text.primary">
                     Développement Personnel
                 </Typography>
-                <Button id={styles.buttonLogin} variant="text" color="inherit"><Typography color="text.primary">Connexion</Typography></Button>
             </Toolbar>
         </AppBar>
     )
