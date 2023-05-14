@@ -44,6 +44,11 @@ export default function ToolbarConnected() {
     navigate('/');
   }
 
+  const handleResultat = () => {
+    handleCloseUserMenu();
+    navigate('/quiz/result/resultid');
+  }
+
   const navigate = useNavigate()
   const navigateNavMenu = (path) => {
     handleCloseNavMenu();
@@ -157,6 +162,9 @@ export default function ToolbarConnected() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem onClick={handleResultat}>
+                <Typography textAlign="center">Mes résultats</Typography>
+              </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">Mon compte</Typography>
               </MenuItem>
