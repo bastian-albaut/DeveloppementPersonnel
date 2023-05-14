@@ -4,27 +4,20 @@ import jwt_decode from "jwt-decode";
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
-import { Alert, Button, TextField, InputAdornment, IconButton } from '@mui/material';
+import { Button, TextField, InputAdornment, IconButton } from '@mui/material';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { login } from '../../api';
 import styles from "../../styles/components/loginRegister/sectionLogin.module.scss"
 
 export default function Login(props) {
     const [data, setData] = useState({ mail: '', password: '' });
     const [userLogIn, setUserLoginIn] = useState(false);
-    const [errorLogin, setErrorLogin] = useState('');
-
-    const handleShowError = (msg) => {
-        setErrorLogin(msg)
-        setTimeout(() => {
-            setErrorLogin('')
-         }, 4000)
-    }
 
     const navigate = useNavigate();
 
-    //ComponentDidMount
+    // Check if user is already logged in
     useEffect(() => {
         const tokenString = localStorage.getItem('token');
         if(tokenString) {
@@ -46,23 +39,21 @@ export default function Login(props) {
     }
     
     const handleSignIn = async () => {
-        if(data.mail !== '' && data.password !== '') {
-            try {
-                // const res = await login(data);
-                const res = 0;
-                if(res && res.data) {
-                    setToken(res.data.token)
-                }
-            } catch(error) {
-                console.log(error)
-                if(error.code === "ERR_NETWORK") {
-                    handleShowError("Erreur: Serveur inaccessible.");
-                } else {
-                    handleShowError("Erreur: Adresse mail ou mot de passe incorrect.");
-                }
+        if(data.mail === '' || data.password === '') {
+            props.handleShowError("Veuillez entrer votre adresse mail et votre mot de passe.");
+            return;
+        }
+        try {
+            const res = await login(data);
+            if(res && res.data) {
+                setToken(res.data.token)
             }
-        } else {
-            handleShowError("Veuillez entrer votre adresse mail et votre mot de passe.");
+        } catch(error) {
+            if(error.code === "ERR_NETWORK") {
+                props.handleShowError("Erreur: Serveur inaccessible.");
+            } else {
+                props.handleShowError("Erreur: Adresse mail ou mot de passe incorrect.");
+            }
         }
     }
 

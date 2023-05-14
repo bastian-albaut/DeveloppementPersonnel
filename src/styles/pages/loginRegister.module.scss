@@ -1,0 +1,17 @@
+@import "../abstract/variables.module.scss";
+
+.boxAlert {
+    top: calc(10px + $minHeightAppBarSmallScreen);
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px);
+    position: fixed;
+    z-index: 1000;
+}
+
+/* Medium and Large devices (Tablets and laptops/desktops, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .boxAlert {
+        top: calc(10px + $minHeightAppBarWideScreen);
+    }
+}
