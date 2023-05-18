@@ -1,90 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
-import EditorJS from '@editorjs/editorjs';
-import Header from '@editorjs/header';
-import ImageTool from '@editorjs/image';
-import List from '@editorjs/list';
-import Quote from '@editorjs/quote';
-import SimpleImage from '@editorjs/simple-image';
-import Table from '@editorjs/table';
-import Warning from '@editorjs/warning';
-import Button from '@mui/material/Button'
-import { Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import ContentCreateArticle from '../components/article/ContentCreateArticle';
+import Appbar from '../components/general/Appbar';
+import Typography from '@mui/material/Typography'
+import FormCreateArticle from '../components/article/FormCreateArticle';
 
 const ArticleCreate = () => {
-  const [editor, setEditor] = useState(null);
 
-  const handleSave = async () => {
-    // Retrieve the Editor.js data
-    const savedData = await editor.save();
-
-    // Convert the data to JSON
-    const jsonData = JSON.stringify(savedData);
-
-    // TODO: Send `jsonData` to backend and handle response
-  };
-
-  const initEditor = () => {
-    const editor = new EditorJS({
-      holder: 'editorjs',
-      onReady: () => {
-        ejInstance.current = editor;
-      },
-      autofocus: true,
-      data: DEFAULT_INITIAL_DATA,
-      onChange: async () => {
-        let content = await editor.saver.save();
-
-        console.log(content);
-      },
-      tools: { 
-        header: Header, 
-        image: ImageTool,
-        list: List,
-        quote: Quote,
-        simpleImage: SimpleImage,
-        table: Table,
-        warning: Warning,
-      },
-    });
-  };
-
-  const ejInstance = useRef();
-
-  const DEFAULT_INITIAL_DATA =  {
-    "time": new Date().getTime(),
-    "blocks": [
-      {
-        "type": "header",
-        "data": {
-          "text": "This is my awesome editor!",
-          "level": 1
-        }
-      },
-      {
-        "type": "paragraph",
-        "data": {
-          "text": "Veuillez entrer ici la description de l'article"
-        }
-      }
-    ]
-  };
+  const [informationsFilled, setInformationsFilled] = useState(false);
+  const [formData, setFormData] = useState({ title: "", description: "", category: "", picture: ""});
 
   useEffect(() => {
-    if (ejInstance.current === null) {
-      initEditor();
-    }
-
-    return () => {
-      ejInstance?.current?.destroy();
-      ejInstance.current = null;
-    };
-  }, []);
+    console.log(formData);
+  }, [formData])
 
   return (
-    <Box>
-      <div id='editorjs'></div>
-      <Button variant="contained" color="primary" onClick={handleSave}>Créer l'article</Button>
-    </Box>
+    <>
+      <Appbar />
+      {!informationsFilled ? (
+        <FormCreateArticle setInformationsFilled={setInformationsFilled} formData={formData} setFormData={setFormData}/>
+        ) : (
+        <ContentCreateArticle formData={formData}/>
+      )}
+    </>
   );
 };
 
