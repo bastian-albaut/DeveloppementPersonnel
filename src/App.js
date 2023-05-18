@@ -12,6 +12,7 @@ import QuizResult from './pages/QuizResult';
 import variables from "./styles/abstract/variables.module.scss"
 import Dashboard from './pages/Dashboard';
 import LoginRegister from './pages/LoginRegister';
+import ArticleCreate from './pages/ArticleCreate';
 
 const { palette } = createTheme();
 
@@ -131,6 +132,7 @@ const App = () => {
               <Route path="/quiz/result/resultid" element={<QuizResult />} width="100%"/>
               <Route path="/tableaudebord/userid" element={<Dashboard />} width="100%"/>
               <Route path="/login" element={<LoginRegister />} width="100%"/>
+              <Route path="/article/create" element={<ArticleCreate />} width="100%"/>
               <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </BrowserRouter>
