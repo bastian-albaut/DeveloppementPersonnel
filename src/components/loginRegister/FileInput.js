@@ -6,18 +6,15 @@ import { useDropzone } from 'react-dropzone';
 import styles from '../../styles/components/loginRegister/fileInput.module.scss';
 
 function FileInput(props) {
-    const { onFileSelect } = props;
-    const [selectedFile, setSelectedFile] = useState(null);
+    const { selectedFile, handleFileSelect } = props;
   
     const handleDrop = (acceptedFiles, rejectedFiles, event) => {
-        setSelectedFile(acceptedFiles[0]);
-        onFileSelect(acceptedFiles[0]);
+      handleFileSelect(acceptedFiles[0]);
     };
   
     const handleRemove = (e) => {
         e.stopPropagation();    
-        setSelectedFile(null);
-        onFileSelect(null);
+        handleFileSelect(null);
     };
   
     const {
@@ -27,7 +24,7 @@ function FileInput(props) {
         isDragAccept,
         isDragReject,
     } = useDropzone({
-        accept: 'image/jpeg, image/png',
+        accept: 'image/*',
         onDrop: handleDrop,
     });
   
