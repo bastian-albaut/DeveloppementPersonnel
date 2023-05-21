@@ -12,3 +12,4 @@ API.interceptors.request.use((req) => {
 
 export const getQuiz = () => API.get('/quiz');
 export const login = (data) => API.post('/user/login', data);
+export const register = (data) => API.post('/user/register', data);
