@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 
 import "./styles/styles.scss"
-import TokenContext from "./contexts/contextToken";
 
 import HomePage from "./pages/Homepage";
 import Quiz from './pages/Quiz';
@@ -13,6 +12,7 @@ import variables from "./styles/abstract/variables.module.scss"
 import Dashboard from './pages/Dashboard';
 import LoginRegister from './pages/LoginRegister';
 import ArticleCreate from './pages/ArticleCreate';
+import CurrentUserProvider from './providers/currentUserProvider';
 
 const { palette } = createTheme();
 
@@ -113,18 +113,12 @@ let theme = createTheme({
 
 theme = responsiveFontSizes(theme);
 
-const getToken = () => {
-  const tokenString = localStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  return userToken;
-};
-
 const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-      <TokenContext.Provider value={getToken}>
+        <CurrentUserProvider>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<HomePage />} width="100%"/>
@@ -136,7 +130,7 @@ const App = () => {
               <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </BrowserRouter>
-        </TokenContext.Provider>
+        </CurrentUserProvider>
       </StyledEngineProvider>
     </ThemeProvider>
   );
