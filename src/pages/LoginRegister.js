@@ -6,7 +6,8 @@ import { Alert, Box } from "@mui/material";
 
 import styles from "../styles/pages/loginRegister.module.scss";
 import { useNavigate } from "react-router-dom";
-import TokenContext from "../contexts/contextToken";
+import CurrentUserContext from "../contexts/currentUserToken";
+import Loading from "../components/general/Loading";
 
 
 export default function LoginRegister() {
@@ -22,34 +23,39 @@ export default function LoginRegister() {
         }, 5000)
     }
 
-    // Check if the user is login on mount
+
+    /* Check if the user is login on mount */
     const navigate = useNavigate();
-    const [isConnected, setIsConnected] = useState(false);
-    const getToken = useContext(TokenContext);
+    const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
+    // After loading check if a user is present
     useEffect(() => {
-        setIsConnected(getToken());
-    },[getToken])
+        if(currentUser) {
+            navigate('/quiz/result/resultid');
+        }
+    }, [currentUser])
 
 
-    if(isConnected) {
-        navigate('/quiz/result/resultid');
-    } else {
-        return(
-            <>
-                <Appbar />
-                {error ? (
-                    <Box className={styles.boxAlert}>
-                        <Alert className="alert" severity="error" onClose={() => {setError('')}}>{error}</Alert>
-                    </Box>
-                ) : (
-                null
-                )}
-                {haveAccount ? (
-                    <Login setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
-                ) : (
-                    <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
-                )}
-            </>
+    if (isLoading) {
+        return (
+            <Loading />
         );
-    }
+    } 
+
+    return(
+        <>
+            <Appbar />
+            {error ? (
+                <Box className={styles.boxAlert}>
+                    <Alert className="alert" severity="error" onClose={() => {setError('')}}>{error}</Alert>
+                </Box>
+            ) : (
+            null
+            )}
+            {haveAccount ? (
+                <Login setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
+            ) : (
+                <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
+            )}
+        </>
+    );
 }

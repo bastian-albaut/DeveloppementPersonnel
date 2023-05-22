@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import styles from "../../styles/components/general/appbar.module.scss"
 import ToolbarConnected from "./ToolbarConnected";
 import ToolbarDisconnected from "./ToolbarDisconnected";
-
+import CurrentUserContext from "../../contexts/currentUserToken";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 
 export default function Appbar() {
 
-    const [isConnected, setIsConnected] = useState(false);
+    /* Check if the user is login on mount */
+    const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
+
+    if (isLoading) {
+        return (
+            <CircularProgress />
+        );
+    } 
 
     return(
         <>
-        {isConnected ? <ToolbarConnected /> : <ToolbarDisconnected />}  
+        {currentUser ? <ToolbarConnected /> : <ToolbarDisconnected />}  
         </>
     )
 }
