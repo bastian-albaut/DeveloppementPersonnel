@@ -1,25 +1,10 @@
 import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const pages = [
-   {
-    name: 'Tableau de bord',
-    path : '/tableaudebord/userid'
-  }, 
-  {
-    name: 'Article',
-    path : '/tableaudebord/userid'
-  },
-  {
-    name: 'Astuces',
-    path : '/tableaudebord/userid'
-  }
-];
-
-export default function ToolbarConnected() {
+export default function ToolbarConnected(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -46,7 +31,7 @@ export default function ToolbarConnected() {
 
   const handleResultat = () => {
     handleCloseUserMenu();
-    navigate('/quiz/result/resultid');
+    navigate(`/quiz/result/${props.currentUser._id}`);
   }
 
   const navigate = useNavigate()
@@ -54,6 +39,21 @@ export default function ToolbarConnected() {
     handleCloseNavMenu();
     navigate(path);
   }
+
+  const pages = [
+    {
+      name: 'Tableau de bord',
+      path : `/tableaudebord/${props.currentUser._id}`
+    }, 
+    {
+      name: 'Article',
+      path : `/tableaudebord/${props.currentUser._id}`
+    },
+    {
+      name: 'Astuces',
+      path : `/tableaudebord/${props.currentUser._id}`
+    }
+  ];
 
   return (
     <AppBar position="static">

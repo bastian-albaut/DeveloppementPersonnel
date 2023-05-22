@@ -95,7 +95,7 @@ export default function Quiz() {
         }
         console.log(currentUser)
         if(currentUser) {
-            navigate('/quiz/result/resultid');
+          navigate(`/quiz/result/${currentUser._id}`);
         }
         setIsInitialRender(false);
     }, [currentUser])

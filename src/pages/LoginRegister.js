@@ -30,7 +30,7 @@ export default function LoginRegister() {
     // After loading check if a user is present
     useEffect(() => {
         if(currentUser) {
-            navigate('/quiz/result/resultid');
+          navigate(`/quiz/result/${currentUser._id}`);
         }
     }, [currentUser])
 
@@ -52,9 +52,9 @@ export default function LoginRegister() {
             null
             )}
             {haveAccount ? (
-                <Login setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
+                <Login setHaveAccount={setHaveAccount} handleShowError={handleShowError} currentUser={currentUser}/>
             ) : (
-                <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError}/>
+                <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError} currentUser={currentUser}/>
             )}
         </>
     );

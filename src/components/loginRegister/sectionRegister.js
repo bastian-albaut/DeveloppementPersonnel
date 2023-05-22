@@ -26,8 +26,8 @@ export default function Register(props) {
     const navigate = useNavigate();
 
     const setToken = (userToken) => {
-        localStorage.setItem('token', JSON.stringify(userToken));
-        navigate("/quiz/result/resultid");
+      localStorage.setItem('token', JSON.stringify(userToken));
+      navigate(`/quiz/result/${props.currentUser._id}`);
     }
 
     // Visibility password

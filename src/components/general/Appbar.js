@@ -22,7 +22,7 @@ export default function Appbar() {
 
     return(
         <>
-        {currentUser ? <ToolbarConnected /> : <ToolbarDisconnected />}  
+        {currentUser ? <ToolbarConnected currentUser={currentUser}/> : <ToolbarDisconnected />}  
         </>
     )
 }

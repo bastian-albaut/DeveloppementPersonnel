@@ -18,7 +18,7 @@ export default function Login(props) {
 
     const setToken = (userToken) => {
         localStorage.setItem('token', JSON.stringify(userToken));
-        navigate("/quiz/result/resultid");
+        navigate(`/quiz/result/${props.currentUser._id}`);
     }
     
     const handleSignIn = async () => {
