@@ -5,12 +5,12 @@ $marginCard: 5px;
 
 #card {
     margin: 0 $marginCard 0 $marginCard;
-    border-radius: 0;
     max-height: 300px;
     width: 100vw;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
+    user-select: none;
 }
 
 #image {
