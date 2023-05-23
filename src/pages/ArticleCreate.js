@@ -10,7 +10,7 @@ import CurrentUserContext from '../contexts/currentUserToken';
 const ArticleCreate = () => {
 
     const [informationsFilled, setInformationsFilled] = useState(false);
-    const [formData, setFormData] = useState({ title: "", description: "", category: "", picture: ""});
+    const [formData, setFormData] = useState({ title: "", description: "", category_name: "", picture: ""});
 
     useEffect(() => {
         console.log(formData);
@@ -46,7 +46,7 @@ const ArticleCreate = () => {
 
   return (
     <>
-        <Appbar />
+        <Appbar currentUser={currentUser}/>
         {!informationsFilled ? (
             <FormCreateArticle setInformationsFilled={setInformationsFilled} formData={formData} setFormData={setFormData}/>
             ) : (

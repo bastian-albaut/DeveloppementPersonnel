@@ -1,7 +1,11 @@
+@import "../../abstract/variables.module.scss";
+
 #boxSection {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+    height: calc(90vh - $minHeightAppBarSmallScreen);
 }
 
 #typoTitle {
@@ -9,7 +13,8 @@
 }
 
 .textField {
-    width: 50%;
+    max-width: 500px;
+    width: 80%;
 }
 
 #boxButton {
@@ -19,4 +24,15 @@
 
 #button {
     margin: auto;
+}
+
+#boxSelect {
+    margin-top: 8px;
+}
+
+/* Medium and Large devices (Tablets and laptops/desktops, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #boxSection {
+        height: calc(90vh - $minHeightAppBarWideScreen);
+    }
 }

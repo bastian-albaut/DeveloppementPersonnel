@@ -196,7 +196,7 @@ const ContentCreateArticle = (props) => {
         <Box id={styles.boxSection}>
             <Typography id={styles.typoTitlePage} variant="h2">Creation d'un article</Typography>
             <Box id={styles.boxArticle}>
-                <Typography id={styles.typoCategory} variant="h6">{props.formData.category}</Typography>
+                <Typography id={styles.typoCategory} variant="h6">{props.formData.category_name}</Typography>
                 <Typography id={styles.typoTitle} variant="h3">{props.formData.title}</Typography>
                 <Typography id={styles.typoDescription} variant="h5">{props.formData.description}</Typography>
                 <img id={styles.image} src="https://picsum.photos/800/300" alt="description de l'article" />
