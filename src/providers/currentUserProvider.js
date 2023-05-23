@@ -16,17 +16,17 @@ const CurrentUserProvider = ({ children }) => {
     
     const fetchData = async () => {
       const token = getToken();
-      if(!token) {
-        setCurrentUser(null);
-      }
-      if (token && !currentUser) { // If currentUser is already set, don't fetch again
+      if(token) {
         try {
           const user = await getUser(token);
           if (user) {
             setCurrentUser(user.data);
           }
         } catch (error) {
-          console.log(error);
+          setCurrentUser(null);
+          if(error.response.status === 401) {
+            localStorage.removeItem('token');
+          }
         }
       }
       setIsLoading(false);
