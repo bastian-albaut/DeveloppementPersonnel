@@ -6,23 +6,20 @@ import ToolbarDisconnected from "./ToolbarDisconnected";
 import CurrentUserContext from "../../contexts/currentUserToken";
 import Loading from "./Loading";
 import { useNavigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 
-export default function Appbar() {
+export default function Appbar(props) {
 
-    /* Check if the user is login on mount */
-    const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-
-    if (isLoading) {
-        return (
-            <CircularProgress />
-        );
-    } 
+    
+    useEffect(() => {
+        // console.log("currentUser on appbar")
+        // console.log(props.currentUser)
+    }, [props.currentUser])
 
     return(
         <>
-        {currentUser ? <ToolbarConnected currentUser={currentUser}/> : <ToolbarDisconnected />}  
+        {props.currentUser ? <ToolbarConnected currentUser={props.currentUser}/> : <ToolbarDisconnected />}  
         </>
     )
 }

@@ -32,6 +32,7 @@ export default function Dashboard() {
             navigate('/login');
         }
         setIsInitialRender(false);
+        console.log(currentUser)
     }, [currentUser])
 
 
@@ -41,9 +42,13 @@ export default function Dashboard() {
         );
     } 
 
+    if (!currentUser) {
+        return null;
+    }
+
     return (
         <>
-            <Appbar />
+            <Appbar currentUser={currentUser} />
             <Box id={styles.generalBox}>
                 <SectionQuote />
                 <SectionArticles />

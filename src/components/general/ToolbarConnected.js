@@ -3,6 +3,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getResultId } from "../../api";
+
 
 export default function ToolbarConnected(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -31,7 +33,7 @@ export default function ToolbarConnected(props) {
 
   const handleResultat = () => {
     handleCloseUserMenu();
-    navigate(`/quiz/result/${props.currentUser._id}`);
+    navigate(`/quiz/result/${resultId}`);
   }
 
   const navigate = useNavigate()
@@ -54,6 +56,18 @@ export default function ToolbarConnected(props) {
       path : `/tableaudebord/${props.currentUser._id}`
     }
   ];
+
+    // Get the result id correponding to the user
+    const [resultId, setResultId] = useState(null);
+    useEffect(() => {
+        const fetchResultId = async () => {
+            const result = await getResultId(props.currentUser._id);
+            if(result && result.data) {
+                setResultId(result.data);
+            }
+        }
+        fetchResultId();
+    }, [])
 
   return (
     <AppBar position="static">
