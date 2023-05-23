@@ -19,6 +19,8 @@ export default function Quiz() {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+    console.log("Liste de toutes les questions du quiz mélangées")
+    console.log(array)
     return array;
   }
     
@@ -38,6 +40,7 @@ export default function Quiz() {
 
     fetchQuiz();
   },[])
+
 
     // Display or not button to go to previous question
     const [displayIconBack, setDisplayIconBack] = useState(false);
@@ -73,7 +76,26 @@ export default function Quiz() {
     const navigate = useNavigate()
 
     const handleEndQuiz = () => {
-      navigate("/login");
+        // Addition of all percentage of each categorie of resultQuiz into another array
+        const resultAdditionate = [];
+        resultQuiz.forEach((result) => {
+            // If categorie_id already exist in resultAdditionate, add percentage to the percentage already present
+            if(resultAdditionate.some((resultAdd) => resultAdd.categorie_id === result.categorie_id)) {
+                const index = resultAdditionate.findIndex((resultAdd) => resultAdd.categorie_id === result.categorie_id);
+                resultAdditionate[index].percentage += result.percentage;
+            } else {
+                resultAdditionate.push({ categorie_id: result.categorie_id, percentage: result.percentage });
+            }
+        })
+        console.log(resultAdditionate)
+        
+        // Create the object to persist to the result collection in database
+        const resultQuizToPersist = {};
+        resultQuizToPersist.score = resultAdditionate;
+        
+        // Navigate to the login page with the result of the quiz
+        navigate(`/login`, { state: { resultQuiz: resultQuizToPersist } });
+
     }
 
     // Change orientation of animation motion
@@ -122,7 +144,7 @@ export default function Quiz() {
                         transition={{ duration: directionUpdated ? 0.6 : 0.3 }}
                         id={styles.motionDiv}
                         >
-                        <SectionQuiz data={quizData[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
+                        <SectionQuiz setResultQuiz={setResultQuiz} data={quizData[currentQuiz]} handlePreviousQuiz={handlePreviousQuiz} handleNextQuiz={handleNextQuiz} displayIconBack={displayIconBack}/>
                     </motion.div>
                 </AnimatePresence>
               </>

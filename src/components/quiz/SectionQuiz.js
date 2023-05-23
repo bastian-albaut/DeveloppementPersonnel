@@ -17,6 +17,14 @@ export default function SectionQuiz(props) {
         return str.substring(0, index) + "\u00A0" + str.substring(index + 1);
     }
 
+    const handleSubmit = () => {
+        // Set categorie_id and pourcentage in resultQuiz
+        props.setResultQuiz((prevResult) => [...prevResult, { percentage: props.data.answers[currentIndexActiveButton].percentage, categorie_id: props.data.categorie_id }]);
+        
+        // Go to next question
+        props.handleNextQuiz();
+    }
+
     return (
         <Box id={styles.sectionQuiz}>
             <Box id={styles.sectionQuestion}>
@@ -28,7 +36,7 @@ export default function SectionQuiz(props) {
                 ))}
             </Box>
             <Box id={styles.sectionButton}>
-                <Button {...(currentIndexActiveButton === null && {disabled: true})} variant="contained" size="large" color="primary" onClick={props.handleNextQuiz}>Suivant</Button>
+                <Button {...(currentIndexActiveButton === null && {disabled: true})} variant="contained" size="large" color="primary" onClick={handleSubmit}>Suivant</Button>
             </Box>
             {props.displayIconBack && (
                 <ChevronLeftIcon id={styles.iconBackQuestion} onClick={props.handlePreviousQuiz}/>
