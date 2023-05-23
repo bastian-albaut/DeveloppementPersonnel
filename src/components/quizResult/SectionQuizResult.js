@@ -9,8 +9,6 @@ import CardResult from './CardResult';
 import styles from "../../styles/components/quizResult/sectionQuizResult.module.scss"
 
 export default function SectionQuizResult(props) {
-    console.log("props.result")
-    console.log(props.result)
     return(
         <Box id={styles.boxSection}>
             <Typography id={styles.typoTitle} variant="h1" color="initial">Résultat</Typography>

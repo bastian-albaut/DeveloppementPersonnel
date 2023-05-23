@@ -32,7 +32,6 @@ export default function Dashboard() {
             navigate('/login');
         }
         setIsInitialRender(false);
-        console.log(currentUser)
     }, [currentUser])
 
 

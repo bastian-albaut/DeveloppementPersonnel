@@ -40,7 +40,6 @@ export default function Login(props) {
             if(error.code === "ERR_NETWORK") {
                 props.handleShowError("Erreur: Serveur inaccessible.");
             } else {
-                console.log(error)
                 props.handleShowError("Erreur: Adresse mail ou mot de passe incorrect.");
             }
         }

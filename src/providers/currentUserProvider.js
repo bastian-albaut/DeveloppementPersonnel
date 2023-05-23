@@ -15,12 +15,18 @@ const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     
     const fetchData = async () => {
-      const token = getToken();
-      if(token) {
-        try {
+        console.log("test1")
+        const token = getToken();
+        console.log("test2")
+        if(token) {
+            try {
+            console.log("test3")
           const user = await getUser(token);
           if (user) {
+            console.log("test4")
+
             setCurrentUser(user.data);
+            console.log(user.data)
           }
         } catch (error) {
           setCurrentUser(null);

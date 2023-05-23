@@ -27,8 +27,6 @@ export default function LoginRegister() {
     let resultQuiz = null;
     const location = useLocation();
     if(location.state !== null) {
-        console.log("location.state.resultQuiz");
-        console.log(location.state.resultQuiz);
         resultQuiz = location.state.resultQuiz;
     }
 

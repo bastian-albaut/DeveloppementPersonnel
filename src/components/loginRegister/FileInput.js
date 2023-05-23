@@ -36,6 +36,10 @@ function FileInput(props) {
         }
     }, [isDragReject]);
 
+    useEffect(() => {
+        console.log(selectedFile)
+    }, [selectedFile])
+
     return (
       <Box
         id={styles['file-input-container']}

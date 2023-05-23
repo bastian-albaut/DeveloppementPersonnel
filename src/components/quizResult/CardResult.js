@@ -5,7 +5,6 @@ import styles from "../../styles/components/quizResult/cardResult.module.scss"
 import CircularProgressWithLabel from './CircularProgressWithLabel.js';
 
 export default function CardResult(props) {
-    // console.log(props.score.category_name)
     return (
         <Card key={props.index} id={styles.cardResult}>
             <Box id={styles.boxSubResult}>

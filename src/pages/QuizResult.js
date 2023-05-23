@@ -24,8 +24,6 @@ export default function QuizResult() {
     }, [])
     // After loading check if a user is present
     useEffect(() => {
-        console.log("currentUser on quiz result")
-        console.log(currentUser)
         if(isInitialRender) {
             return;
         }
@@ -49,10 +47,7 @@ export default function QuizResult() {
             const result = await getResult(resultId);
             if(result && result.data) {
                 setCurrentResult(result.data);
-                console.log("result.dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-                console.log(result.data)
             } else {
-                console.log(result)
                 navigate('/');
             }
         }
@@ -61,8 +56,6 @@ export default function QuizResult() {
         const fetchAllCategories = async () => {
             const categories = await getAllCategories();
             if(categories && categories.data) {
-                console.log("categories.data")
-                console.log(categories.data)
                 setAllCategories(categories.data);
             } else {
                 navigate('/');

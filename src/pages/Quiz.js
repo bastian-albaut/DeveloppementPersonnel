@@ -19,8 +19,6 @@ export default function Quiz() {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
-    console.log("Liste de toutes les questions du quiz mélangées")
-    console.log(array)
     return array;
   }
     
@@ -87,7 +85,6 @@ export default function Quiz() {
                 resultAdditionate.push({ categorie_id: result.categorie_id, percentage: result.percentage });
             }
         })
-        console.log(resultAdditionate)
         
         // Create the object to persist to the result collection in database
         const resultQuizToPersist = {};
@@ -107,9 +104,6 @@ export default function Quiz() {
     }, [currentQuiz])
 
     const [resultQuiz, setResultQuiz] = useState([])
-    useEffect(() => {
-        console.log(resultQuiz)
-    }, [resultQuiz])
 
     /* Check if the user is login on mount */
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
@@ -119,7 +113,6 @@ export default function Quiz() {
         if(isInitialRender) {
             return;
         }
-        console.log(currentUser)
         if(currentUser) {
           navigate(`/quiz/result/${currentUser._id}`);
         }
