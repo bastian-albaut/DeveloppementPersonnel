@@ -106,6 +106,10 @@ export default function Quiz() {
       setDirectionUpdated(false);
     }, [currentQuiz])
 
+    const [resultQuiz, setResultQuiz] = useState([])
+    useEffect(() => {
+        console.log(resultQuiz)
+    }, [resultQuiz])
 
     /* Check if the user is login on mount */
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
