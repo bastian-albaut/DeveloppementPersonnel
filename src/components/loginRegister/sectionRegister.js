@@ -5,11 +5,11 @@ import styles from "../../styles/components/loginRegister/sectionRegister.module
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../api";
+import { register, postResult } from "../../api";
 
 export default function Register(props) {
 
-    const [formData, setFormData] = useState({pseudonym: '', mail: '', password: '', file: ''});
+    const [formData, setFormData] = useState({pseudonym: '', mail: '', password: '', file: { name: '', size: '', contentType: '' }});
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -19,15 +19,14 @@ export default function Register(props) {
 
     const handleFileSelect = (file) => {
         setSelectedFile(file);
-        setFormData({...formData, file: file})
-        // Process the selected file here, e.g. upload it to a server or save it to a database
+        console.log(file)
+        setFormData({...formData, file: { name: file.name, size: file.size, contentType: file.type }})
     };
 
     const navigate = useNavigate();
 
     const setToken = (userToken) => {
-      localStorage.setItem('token', JSON.stringify(userToken));
-      navigate(`/quiz/result/${props.currentUser._id}`);
+        localStorage.setItem('token', JSON.stringify(userToken));
     }
 
     // Visibility password
@@ -59,20 +58,47 @@ export default function Register(props) {
             return;
         }
 
-        
+        // Persist the user in the database
+        let newUser = null;
         try {
             const res = await register(formData);
             if(res && res.data) {
-                console.log("test");
-                // setToken(res.data.token)
+                newUser = res.data.newUser;
+                setToken(res.data.token)
             }
         } catch(error) {
+            console.log(error);
             if(error.code === "ERR_NETWORK") {
                 props.handleShowError("Erreur: Serveur inaccessible.");
+            } else if(error.response.data.msg === "User already exist") {
+                props.handleShowError("Erreur: Un utilisateur avec cette adresse mail ou ce pseudo existe déjà.");
             } else {
-                props.handleShowError("Erreur: Certains champs ne sont pas correctement remplis.");
+                props.handleShowError("Erreur: Une erreur est survenue.");
             }
         }
+
+        console.log("newUser");
+        console.log(newUser);
+
+        if(newUser) {
+            // Add newUser id in the resultQuiz
+            const resultQuiz = props.resultQuiz;
+            resultQuiz.user_id = newUser._id;
+
+            // Persist the result of the quiz in the database
+            try {
+                const res = await postResult(resultQuiz);
+                if(res && res.data) {
+                    // Redirect to the result page
+                    console.log("res.data");
+                    console.log(res.data);
+                    navigate(`/quiz/result/${res.data.result._id}`);
+                }
+            } catch(error) {
+                console.log(error);
+            }
+        }
+
     }
 
     return (
