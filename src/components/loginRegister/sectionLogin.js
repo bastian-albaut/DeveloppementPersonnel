@@ -18,9 +18,14 @@ export default function Login(props) {
 
     const setToken = (userToken) => {
         localStorage.setItem('token', JSON.stringify(userToken));
-        navigate(`/quiz/result/${props.currentUser._id}`);
+        
+        // Get the result if of the user and redirect to the result page
+        const decodedToken = jwt_decode(userToken);
+        handleNavigate(decodedToken);
     }
-    
+
+    const handleNavigate = useCallback((decodedToken) => navigate(`/tableaudebord/${decodedToken.id}`, {replace: true}), [navigate]);
+
     const handleSignIn = async () => {
         if(data.mail === '' || data.password === '') {
             props.handleShowError("Veuillez entrer votre adresse mail et votre mot de passe.");
@@ -35,6 +40,7 @@ export default function Login(props) {
             if(error.code === "ERR_NETWORK") {
                 props.handleShowError("Erreur: Serveur inaccessible.");
             } else {
+                console.log(error)
                 props.handleShowError("Erreur: Adresse mail ou mot de passe incorrect.");
             }
         }
