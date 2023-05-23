@@ -25,3 +25,10 @@
     font-weight: bold;
     font-family: "Fredoka", cursive;
 }
+
+/* Extra Small and small devices (portrait phones, less than 600px) */
+@media only screen and (max-width: 600px) {
+    #typoTextCircularProgress {
+        font-size: 1.3rem;
+    }
+}

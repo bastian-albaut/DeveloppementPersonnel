@@ -11,7 +11,7 @@
 
 #typoCategorieName {
     font-size: 24px;
-    margin-left: 10px;
+    margin-left: 15px;
     font-weight: bold;
     font-family: "Fredoka", cursive;
 }
@@ -31,4 +31,12 @@
     #cardResult {
         flex-basis: calc(100% - $gapSizeSmallScreen - 2*$paddingCard);
     }
+}
+
+/* Extra Small devices (portrait phones, less than 480px) */
+@media only screen and (max-width: 480px) {
+    #typoCategorieName {
+        font-size: 20px;
+    }
+    
 }
