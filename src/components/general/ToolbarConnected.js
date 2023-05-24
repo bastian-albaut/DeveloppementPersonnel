@@ -36,6 +36,11 @@ export default function ToolbarConnected(props) {
     navigate(`/quiz/result/${resultId}`);
   }
 
+    const handleMyArticles = () => {
+        handleCloseUserMenu();
+        navigate(`/article/user/${props.currentUser._id}`);
+    }
+
   const navigate = useNavigate()
   const navigateNavMenu = (path) => {
     handleCloseNavMenu();
@@ -179,8 +184,8 @@ export default function ToolbarConnected(props) {
               <MenuItem onClick={handleResultat}>
                 <Typography textAlign="center">Mes résultats</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Mon compte</Typography>
+              <MenuItem onClick={handleMyArticles}>
+                <Typography textAlign="center">Mes articles</Typography>
               </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Déconnexion</Typography>

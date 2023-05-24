@@ -14,6 +14,7 @@ import LoginRegister from './pages/LoginRegister';
 import ArticleCreate from './pages/ArticleCreate';
 import CurrentUserProvider from './providers/currentUserProvider';
 import ArticleDetail from './pages/ArticleDetail';
+import ArticlesOfUser from './pages/ArticlesOfUser';
 
 const { palette } = createTheme();
 
@@ -129,6 +130,7 @@ const App = () => {
               <Route path="/login" element={<LoginRegister />} width="100%"/>
               <Route path="/article/create" element={<ArticleCreate />} width="100%"/>
               <Route path="/article/:id" element={<ArticleDetail />} width="100%"/>
+              <Route path="/article/user/:id" element={<ArticlesOfUser />} width="100%"/>
               <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </BrowserRouter>

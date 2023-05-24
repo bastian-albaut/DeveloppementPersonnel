@@ -1,0 +1,37 @@
+@import "../../../styles/abstract/variables.module.scss";
+
+#typoTitlePage {
+    text-align: center;
+    margin: 30px 0 40px 0;
+}
+
+#card {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0 10px 30px 10px;
+}
+
+#image {
+    max-height: 100px;
+}
+
+#boxSectionTypo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px 10px 5px 15px;
+    width: 100%;
+}
+
+#boxDeleteIcon {
+    min-width: 100px;
+    display: flex;
+}
+
+#deleteIcon {
+    transform: scale(1.4);
+    margin: auto;
+    cursor: pointer;
+    color: $primaryColor;
+}
