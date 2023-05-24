@@ -1,14 +1,19 @@
 #boxSection {
-    margin: 10px 70px 10px 70px;
+    margin: 30px 15% 10px 15%;
 }
+
 
 #typoTitlePage {
     text-align: center;
-    margin: 20px 0px 40px 0px;
+    margin: 20px 0px 60px 0px;
+}
+
+#typoTitle {
+    margin-top: 10px;
 }
 
 #typoDescription {
-    margin: 20px 0px 20px 0px;
+    margin: 30px 0px 30px 0px;
 }
 
 #image {
@@ -21,8 +26,22 @@
     margin: 10px 0px 20px 0px;
 }
 
+#boxAuthorDate {
+    display: flex;
+    justify-content: center;
+}
+
+#subBoxAuthorDate {
+    max-width: 650px;
+    width: 100%;
+}
+
 #typoAuthor {
     margin-left: 10px;
+}
+
+#typoDate {
+    margin-bottom: 50px;
 }
 
 #boxButton {
@@ -37,6 +56,15 @@
 /* Extra small and Small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     #boxSection {
-        margin: 10px 10px 10px 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+/* Medium devices (landscape tablets, between 600px and 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    #boxSection {
+        margin-left: 60px;
+        margin-right: 60px;
     }
 }

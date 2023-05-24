@@ -238,9 +238,14 @@ const ContentCreateArticle = (props) => {
                 <Typography id={styles.typoTitle} variant="h3">{props.formData.title}</Typography>
                 <Typography id={styles.typoDescription} variant="h5">{props.formData.description}</Typography>
                 <img id={styles.image} src="https://picsum.photos/800/300" alt="description de l'article" />
-                <Box id={styles.boxAuthor}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                    <Typography id={styles.typoAuthor} variant="body1" color="initial">Remy Sharp</Typography>
+                <Box id={styles.boxAuthorDate}>
+                    <Box id={styles.subBoxAuthorDate}>
+                        <Box id={styles.boxAuthor}>
+                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                            <Typography id={styles.typoAuthor} variant="body1" color="initial">{props.currentUser._id}</Typography>
+                        </Box>
+                        <Typography id={styles.typoDate} variant="body1" color="initial">Le {new Date().toLocaleString('fr-FR', {dateStyle: 'long', timeStyle: 'medium'})}</Typography>
+                    </Box>
                 </Box>
             </Box>
             <div id="editorjs"></div>
