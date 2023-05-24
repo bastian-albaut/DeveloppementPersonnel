@@ -10,7 +10,7 @@ import CurrentUserContext from '../contexts/currentUserToken';
 const ArticleCreate = () => {
 
     const [informationsFilled, setInformationsFilled] = useState(false);
-    const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: ""});
+    const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: "", author_name: ''});
 
     useEffect(() => {
         console.log("formDataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");

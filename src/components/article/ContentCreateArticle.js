@@ -27,8 +27,6 @@ const ContentCreateArticle = (props) => {
         // Retrieve the Editor.js data
         const savedData = await ejInstance.current.save();
 
-        console.log("props.currentUser._iddddddddddddddddddddddddddddddddddddddddddddddddd")
-        console.log(props.currentUser._id)
         props.setFormData({...props.formData, content: savedData, author_id: props.currentUser._id});
         setContentSaved(true);
     }
@@ -41,7 +39,7 @@ const ContentCreateArticle = (props) => {
                 const category = await getCategoryByName(props.formData.category_name);
                 if(category && category.data) {
                     console.log(category.data);
-                    props.setFormData({...props.formData, categorie_id: category.data._id, categorie_name: category.data.name});
+                    props.setFormData({...props.formData, categorie_id: category.data._id, categorie_name: category.data.name, author_name: props.currentUser.name});
                     setAllDataIsSaved(true);
                 }
             }
@@ -242,7 +240,7 @@ const ContentCreateArticle = (props) => {
                     <Box id={styles.subBoxAuthorDate}>
                         <Box id={styles.boxAuthor}>
                             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            <Typography id={styles.typoAuthor} variant="body1" color="initial">{props.currentUser._id}</Typography>
+                            <Typography id={styles.typoAuthor} variant="body1" color="initial">{props.currentUser.name}</Typography>
                         </Box>
                         <Typography id={styles.typoDate} variant="body1" color="initial">Le {new Date().toLocaleString('fr-FR', {dateStyle: 'long', timeStyle: 'medium'})}</Typography>
                     </Box>
