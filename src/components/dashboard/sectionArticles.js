@@ -8,6 +8,7 @@ import articles from "../../assets/article/listArticles";
 import styles from "../../styles/components/dashboard/sectionArticles.module.scss"
 import { getAllArticles, getResultId } from "../../api";
 import Loading from "../general/Loading";
+import { useNavigate } from "react-router-dom";
 
 export default function SectionArticles(props) {
 
@@ -92,9 +93,11 @@ export default function SectionArticles(props) {
         }
     }
     
+    const navigate = useNavigate();
     const items1 = articlesByResult ? (
         articlesByResult.map((article, index) => (
           <CardViewWideScreen
+            id={article._id}
             key={index}
             title={article.title}
             picture="https://picsum.photos/500/300"
@@ -109,6 +112,7 @@ export default function SectionArticles(props) {
     const items2 = articlesByResult ? (
         articlesByResult.map((article, index) => (
           <CardViewSmallScreen
+            id={article._id}
             key={index}
             title={article.title}
             picture="https://picsum.photos/500/300"
@@ -116,6 +120,7 @@ export default function SectionArticles(props) {
             date={article.date}
             onDragStart={handleDragStart}
             displayDate={displayDate}
+            onClick={() => navigate(`/article/${article._id}`)}
           />
         ))
     ) : null;
@@ -151,6 +156,7 @@ export default function SectionArticles(props) {
                   disableDotsControls={true}
                   infinite={true}
                   keyboardNavigation={true}
+
               />
             ) : (
               <Box id={styles.boxSubSection}>
