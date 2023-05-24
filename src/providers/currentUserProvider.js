@@ -11,6 +11,7 @@ const CurrentUserProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isProfessional, setIsProfessional] = useState(false);
 
   useEffect(() => {
     
@@ -27,6 +28,9 @@ const CurrentUserProvider = ({ children }) => {
 
             setCurrentUser(user.data);
             console.log(user.data)
+            if(user.data.isProfessional) {
+                setIsProfessional(true);
+            }
           }
         } catch (error) {
           setCurrentUser(null);
@@ -42,7 +46,7 @@ const CurrentUserProvider = ({ children }) => {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, isLoading, getToken }}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoading, getToken, isProfessional }}>
       {children}
     </CurrentUserContext.Provider>
   );

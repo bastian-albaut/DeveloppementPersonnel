@@ -34,12 +34,11 @@ export default function LoginRegister() {
     const [resultId, setResultId] = useState(null);
     useEffect(() => {
         const fetchResultId = async () => {
-            if(!currentUser) {
-                return;
-            }
-            const result = await getResultId(currentUser._id);
-            if(result && result.data) {
-                setResultId(result.data);
+            if(currentUser) {
+                const result = await getResultId(currentUser._id);
+                if(result && result.data) {
+                    setResultId(result.data);
+                }
             }
         }
         fetchResultId();
