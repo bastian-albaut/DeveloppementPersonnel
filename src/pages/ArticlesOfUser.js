@@ -63,7 +63,7 @@ const ArticlesOfUser = () => {
     return( 
         <>
             <Appbar currentUser={currentUser} />
-            <SectionArticlesOfUser articles={articles} />
+            <SectionArticlesOfUser articles={articles} setArticles={setArticles}/>
         </>
     );
 }
