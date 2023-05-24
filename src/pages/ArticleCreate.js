@@ -10,9 +10,10 @@ import CurrentUserContext from '../contexts/currentUserToken';
 const ArticleCreate = () => {
 
     const [informationsFilled, setInformationsFilled] = useState(false);
-    const [formData, setFormData] = useState({ title: "", description: "", category_name: "", picture: ""});
+    const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: ""});
 
     useEffect(() => {
+        console.log("formDataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         console.log(formData);
     }, [formData])
 
@@ -29,28 +30,37 @@ const ArticleCreate = () => {
     // After loading check if a user is present
     useEffect(() => {
         if(isInitialRender) {
+            setIsInitialRender(false);
             return;
         }
         if(!currentUser) {
             navigate('/login');
         }
-        setIsInitialRender(false);
+        console.log("currentUser");
+        console.log(currentUser);
     }, [currentUser])
-
-
+    
     if (isLoading) {
         return (
             <Loading />
         );
     } 
 
+    if (!currentUser) {
+        return null; // Render nothing until currentUser is set
+    }
+
   return (
     <>
         <Appbar currentUser={currentUser}/>
-        {!informationsFilled ? (
-            <FormCreateArticle setInformationsFilled={setInformationsFilled} formData={formData} setFormData={setFormData}/>
-            ) : (
-            <ContentCreateArticle formData={formData}/>
+        {currentUser ? (
+            !informationsFilled ? (
+                <FormCreateArticle setInformationsFilled={setInformationsFilled} formData={formData} setFormData={setFormData}/>
+                ) : (
+                <ContentCreateArticle currentUser={currentUser} formData={formData} setFormData={setFormData}/>
+            )
+        ) : (
+            null
         )}
     </>
   );

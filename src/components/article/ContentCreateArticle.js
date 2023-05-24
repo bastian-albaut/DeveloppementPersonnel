@@ -12,22 +12,60 @@ import { i18n } from '@editorjs/editorjs';
 import Marker from '@editorjs/marker';
 import Underline from '@editorjs/underline';
 import Strikethrough from '@sotaproject/strikethrough';
+import { postArticle, getCategoryByName } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 const ContentCreateArticle = (props) => {
     
     const ejInstance = useRef();
+    const navigate = useNavigate();
+    const [contentSaved, setContentSaved] = useState(false);
+    const [allDataIsSaved, setAllDataIsSaved] = useState(false);
 
     const handleSave = async () => {
+        
         // Retrieve the Editor.js data
         const savedData = await ejInstance.current.save();
 
-        // Convert the data to JSON
-        const jsonData = JSON.stringify(savedData);
+        console.log("props.currentUser._iddddddddddddddddddddddddddddddddddddddddddddddddd")
+        console.log(props.currentUser._id)
+        props.setFormData({...props.formData, content: savedData, author_id: props.currentUser._id});
+        setContentSaved(true);
+    }
+    
+    useEffect(() => {
 
-        console.log(jsonData)
+        // Get categorie by name
+        const fetchCategoryByName = async () => {
+            if(contentSaved) {
+                const category = await getCategoryByName(props.formData.category_name);
+                if(category && category.data) {
+                    console.log(category.data);
+                    props.setFormData({...props.formData, categorie_id: category.data._id, categorie_name: category.data.name});
+                    setAllDataIsSaved(true);
+                }
+            }
+        }
 
-        // TODO: Send `jsonData` to backend and handle response
-    };
+        fetchCategoryByName();
+    }, [contentSaved])
+    
+    // Send the data to the server
+    useEffect(() => {
+        const sendArticle = async () => {
+            if(allDataIsSaved) {
+                console.log(props.formData);
+                const result = await postArticle(props.formData);
+                if(result && result.data) {
+                    console.log(result.data)
+                    navigate(`/article/${result.data.article._id}`)
+                }
+            }
+        }
+
+        sendArticle();
+    }, [allDataIsSaved])
+    
 
     const initEditor = () => {
         const editor = new EditorJS({
