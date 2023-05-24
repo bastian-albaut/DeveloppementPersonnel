@@ -21,24 +21,24 @@ const CurrentUserProvider = ({ children }) => {
         console.log("test2")
         if(token) {
             try {
-            console.log("test3")
-          const user = await getUser(token);
-          if (user) {
-            console.log("test4")
+                console.log("test3")
+                const user = await getUser(token);
+                if (user) {
+                    console.log("test4")
 
-            setCurrentUser(user.data);
-            console.log(user.data)
-            if(user.data.isProfessional) {
-                setIsProfessional(true);
+                    setCurrentUser(user.data);
+                    console.log(user.data)
+                    if(user.data.isProfessional) {
+                        setIsProfessional(true);
+                    }
+                }
+            } catch (error) {
+                setCurrentUser(null);
+                if(error.response.status === 401) {
+                    localStorage.removeItem('token');
+                }
             }
-          }
-        } catch (error) {
-          setCurrentUser(null);
-          if(error.response.status === 401) {
-            localStorage.removeItem('token');
-          }
         }
-      }
       setIsLoading(false);
     };
 
