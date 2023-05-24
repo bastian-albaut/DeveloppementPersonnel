@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../../styles/components/article/cardViewSmallScreen.module.scss";
 
 export default function CardView(props) {
+
     return(
         <>
             <Box id={styles.card}>
@@ -12,7 +13,7 @@ export default function CardView(props) {
                         <Typography id={styles.typoCategorie} variant="body2" color="initial">{props.categorie_name}</Typography>
                         <Typography id={styles.typoTitle} variant="h6" color="black">{props.title}</Typography>
                     </Box>
-                    <Typography variant="body1" color="initial">{props.date}</Typography>
+                    <Typography variant="body1" color="initial">{props.displayDate(props.date)}</Typography>
                 </Box>
             </Box>
         </>

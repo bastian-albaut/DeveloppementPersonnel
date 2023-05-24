@@ -9,7 +9,7 @@ export default function CardView(props) {
             <Box id={styles.boxSection}>
                 <Typography id={styles.typoCategorie} variant="body2" color="initial">{props.categorie_name}</Typography>
                 <Typography id={styles.typoTitle} variant="h6" color="black">{props.title}</Typography>
-                <Typography id={styles.typoDescription} variant="body1" color="initial">{props.description}</Typography>
+                <Typography id={styles.typoDescription} variant="body1" color="initial">{props.displayDate(props.date)}</Typography>
             </Box>
         </Card>
     )
