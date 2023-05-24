@@ -63,7 +63,7 @@ export default function ToolbarConnected(props) {
         const fetchResultId = async () => {
             const result = await getResultId(props.currentUser._id);
             if(result && result.data) {
-                setResultId(result.data);
+                setResultId(result.data._id);
             }
         }
         fetchResultId();

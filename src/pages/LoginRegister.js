@@ -37,7 +37,7 @@ export default function LoginRegister() {
             if(currentUser) {
                 const result = await getResultId(currentUser._id);
                 if(result && result.data) {
-                    setResultId(result.data);
+                    setResultId(result.data._id);
                 }
             }
         }
