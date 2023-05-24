@@ -20,3 +20,4 @@ export const getResultId = (userId) => API.get(`/result/user/${userId}`);
 export const getAllCategories = () => API.get('/categorie');
 export const getCategoryByName = (categoryName) => API.get(`/categorie/${categoryName}`);
 export const postArticle = (data) => API.post('/article', data);
+export const getArticle = (articleId) => API.get(`/article/${articleId}`);
