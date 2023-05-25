@@ -1,23 +1,58 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContentCreateArticle from '../components/article/ContentCreateArticle';
 import Appbar from '../components/general/Appbar';
 import FormCreateArticle from '../components/article/FormCreateArticle';
 import Loading from '../components/general/Loading';
-import CurrentUserContext from '../contexts/currentUserToken';
 import RefuseAccess from '../components/general/RefuseAccess';
+import { getUser } from '../api';
 
 const ArticleCreate = () => {
 
     const [informationsFilled, setInformationsFilled] = useState(false);
     const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: "", author_name: ''});
 
-    useEffect(() => {
-        console.log("formDataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        console.log(formData);
-    }, [formData])
-
     /* Check if the user is login on mount */
-    const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
+    const getToken = () => {
+        const tokenString = localStorage.getItem('token');
+        const userToken = JSON.parse(tokenString);
+        return userToken;
+    };
+
+    const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = getToken();
+
+            if(!token) {
+                setCurrentUser(null);
+                setIsLoading(false);
+                return;
+            }
+
+            if(token) {
+                try {
+                    const user = await getUser(token);
+                    if (user) {
+                        setCurrentUser(user.data);
+                    }
+                } catch (error) {
+                    setCurrentUser(null);
+                    if(error.response.status === 401) {
+                        localStorage.removeItem('token');
+                    }
+                }
+            }
+        };
+        fetchData();
+    }, []);
+
+    // Wait for the user to be set to change the loading state
+    useEffect(() => {
+        if(currentUser) {
+            setIsLoading(false);
+        }
+    }, [currentUser])
 
     // Display loading screen on mount
     if (isLoading) {

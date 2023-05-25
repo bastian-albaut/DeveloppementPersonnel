@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { scrollIntoView } from "seamless-scroll-polyfill";
 
 import SectionOne from '../components/homepage/SectionOne';
 import SectionTwo from '../components/homepage/sectionTwo';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/general/Loading';
+import { getUser } from '../api';
 
 export default function HomePage() {
     
@@ -25,6 +27,56 @@ export default function HomePage() {
     const navigate = useNavigate();
     const handleNavigateLogin = () => {
         navigate('/login');
+    }
+
+    /* Check if the user is login on mount */
+    const getToken = () => {
+        const tokenString = localStorage.getItem('token');
+        const userToken = JSON.parse(tokenString);
+        return userToken;
+    };
+
+    const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = getToken();
+
+            if(!token) {
+                setCurrentUser(null);
+                setIsLoading(false);
+                return;
+            }
+
+            if(token) {
+                try {
+                    const user = await getUser(token);
+                    if (user) {
+                        setCurrentUser(user.data);
+                    }
+                } catch (error) {
+                    setCurrentUser(null);
+                    if(error.response.status === 401) {
+                        localStorage.removeItem('token');
+                    }
+                }
+            }
+        };
+        fetchData();
+    }, []);
+
+    // Wait for the user to be set to change the loading state
+    useEffect(() => {
+        if(currentUser) {
+            setIsLoading(false);
+        }
+    }, [currentUser])
+
+    // Display loading screen on mount
+    if (isLoading) {
+        return (
+            <Loading />
+        );
     }
 
     return(

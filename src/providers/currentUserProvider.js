@@ -3,15 +3,14 @@ import { getUser } from '../api';
 import CurrentUserContext from '../contexts/currentUserToken';
 
 const CurrentUserProvider = ({ children }) => {
-  const getToken = () => {
-    const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken;
-  };
+    const getToken = () => {
+        const tokenString = localStorage.getItem('token');
+        const userToken = JSON.parse(tokenString);
+        return userToken;
+    };
 
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
+    const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
             const token = getToken();
