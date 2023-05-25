@@ -61,7 +61,12 @@
 }
 
 #boxButton2 > .containedButton {
+    z-index: 1;
     margin-bottom: 10px;
+}
+
+#boxButton2 > .outlinedButton {
+    z-index: 1;
 }
 
 .illustration {
