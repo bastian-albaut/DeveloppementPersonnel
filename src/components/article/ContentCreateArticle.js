@@ -27,7 +27,7 @@ const ContentCreateArticle = (props) => {
         // Retrieve the Editor.js data
         const savedData = await ejInstance.current.save();
 
-        props.setFormData({...props.formData, content: savedData, author_id: props.currentUser._id});
+        props.setFormData({...props.formData, content: savedData});
         setContentSaved(true);
     }
     
@@ -39,7 +39,7 @@ const ContentCreateArticle = (props) => {
                 const category = await getCategoryByName(props.formData.category_name);
                 if(category && category.data) {
                     console.log(category.data);
-                    props.setFormData({...props.formData, categorie_id: category.data._id, categorie_name: category.data.name, author_name: props.currentUser.name});
+                    props.setFormData({...props.formData, categorie_id: category.data._id, categorie_name: category.data.name});
                     setAllDataIsSaved(true);
                 }
             }

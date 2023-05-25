@@ -35,6 +35,7 @@ const ArticleCreate = () => {
                     const user = await getUser(token);
                     if (user) {
                         setCurrentUser(user.data);
+                        setFormData({...formData, author_id: user.data._id, author_name: user.data.name});
                     }
                 } catch (error) {
                     setCurrentUser(null);
