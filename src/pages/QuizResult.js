@@ -9,30 +9,13 @@ import Typography from '@mui/material/Typography'
 import Loading from "../components/general/Loading";
 
 import { getResult, getAllCategories } from "../api";
+import RefuseAccess from "../components/general/RefuseAccess";
 
 export default function QuizResult() {
 
     /* Check if the user is login on mount */
     const navigate = useNavigate();
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-    const [isInitialRender, setIsInitialRender] = useState(true); // Flag for initial render
-    // On mount check if a token is present
-    useEffect(() => {
-        if(!getToken()) {
-            navigate('/login');
-        }
-    }, [])
-    // After loading check if a user is present
-    useEffect(() => {
-        if(isInitialRender) {
-            return;
-        }
-        if(!currentUser) {
-            navigate('/login');
-        }
-        setIsInitialRender(false);
-    }, [currentUser])
-
 
     // Get result id from url
     const url = window.location.href;
@@ -88,12 +71,18 @@ export default function QuizResult() {
         if(currentResult && allCategories) createResultWithCategoryNameAndDescription();
     }, [currentResult, allCategories])
 
-    if (isLoading || !resultWithCategory) {
-        return <Loading />
-      }
-    
-    if (!currentUser) {
-        return null; // Render nothing until currentUser is set
+    // Display loading screen on mount
+    if (isLoading || !currentResult || !allCategories || !resultWithCategory) {
+        return (
+            <Loading />
+        );
+    } 
+
+    // Refuse access if not logged in or if professional
+    if(!currentUser || !getToken() || currentUser.isProfessional) {
+        return (
+            <RefuseAccess />
+        );
     }
 
     return(

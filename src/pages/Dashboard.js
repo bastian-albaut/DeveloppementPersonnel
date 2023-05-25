@@ -8,41 +8,26 @@ import styles from "../styles/pages/dashboard.module.scss"
 import SectionQuote from "../components/dashboard/sectionQuote";
 
 import CurrentUserContext from "../contexts/currentUserToken";
-import { useNavigate } from "react-router-dom";
 import Loading from "../components/general/Loading";
+import RefuseAccess from "../components/general/RefuseAccess";
 
 export default function Dashboard() {
 
     /* Check if the user is login on mount */
-    const navigate = useNavigate();
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-    const [isInitialRender, setIsInitialRender] = useState(true); // Flag for initial render
-    // On mount check if a token is present
-    useEffect(() => {
-        if(!getToken()) {
-            navigate('/login');
-        }
-    }, [])
-    // After loading check if a user is present
-    useEffect(() => {
-        if(isInitialRender) {
-            return;
-        }
-        if(!currentUser) {
-            navigate('/login');
-        }
-        setIsInitialRender(false);
-    }, [currentUser])
 
-
+    // Display loading screen on mount
     if (isLoading) {
         return (
             <Loading />
         );
     } 
 
-    if (!currentUser) {
-        return null;
+    // Refuse access if not logged in or if professional
+    if(!currentUser || !getToken() || currentUser.isProfessional) {
+        return (
+            <RefuseAccess />
+        );
     }
 
     return (
@@ -50,7 +35,7 @@ export default function Dashboard() {
             <Appbar currentUser={currentUser} />
             <Box id={styles.generalBox}>
                 <SectionQuote />
-                <SectionArticles />
+                <SectionArticles currentUser={currentUser}/>
                 <SectionTips />
             </Box>
         </>

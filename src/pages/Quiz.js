@@ -10,6 +10,7 @@ import { getQuiz } from '../api';
 import { Box, CircularProgress } from '@mui/material';
 import CurrentUserContext from '../contexts/currentUserToken';
 import Loading from '../components/general/Loading';
+import RefuseAccess from '../components/general/RefuseAccess';
 
 export default function Quiz() {
   
@@ -107,17 +108,20 @@ export default function Quiz() {
 
     /* Check if the user is login on mount */
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-    const [isInitialRender, setIsInitialRender] = useState(true); // Flag for initial render
-    // After loading check if a user is present
-    useEffect(() => {
-        if(isInitialRender) {
-            return;
-        }
-        if(currentUser) {
-          navigate(`/quiz/result/${currentUser._id}`);
-        }
-        setIsInitialRender(false);
-    }, [currentUser])
+
+    // Display loading screen on mount
+    if (isLoading) {
+        return (
+            <Loading />
+        );
+    } 
+
+    // Refuse access if logged in or if professional
+    if(currentUser || getToken() || currentUser.isProfessional) {
+        return (
+            <RefuseAccess />
+        );
+    }
 
 
     if (isLoading) {
