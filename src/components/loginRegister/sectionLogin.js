@@ -19,12 +19,18 @@ export default function Login(props) {
     const setToken = (userToken) => {
         localStorage.setItem('token', JSON.stringify(userToken));
         
-        // Get the result if of the user and redirect to the result page
+        // Get the result if of the user and redirect to his page
         const decodedToken = jwt_decode(userToken);
         handleNavigate(decodedToken);
     }
 
-    const handleNavigate = useCallback((decodedToken) => navigate(`/tableaudebord/${decodedToken.id}`, {replace: true}), [navigate]);
+    const handleNavigate = (decodedToken) => {
+        if(decodedToken.isProfessional) {
+            navigate(`/article/user/${decodedToken.id}`);
+        } else {
+            navigate(`/tableaudebord/${decodedToken.id}`);
+        }
+    }
 
     const handleSignIn = async () => {
         if(data.mail === '' || data.password === '') {

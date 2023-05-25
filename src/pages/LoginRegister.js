@@ -8,7 +8,7 @@ import styles from "../styles/pages/loginRegister.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../contexts/currentUserToken";
 import Loading from "../components/general/Loading";
-import { getResultId } from "../api";
+import { getResultByUserId } from "../api";
 
 export default function LoginRegister() {
 
@@ -35,7 +35,7 @@ export default function LoginRegister() {
     useEffect(() => {
         const fetchResultId = async () => {
             if(currentUser) {
-                const result = await getResultId(currentUser._id);
+                const result = await getResultByUserId(currentUser._id);
                 if(result && result.data) {
                     setResultId(result.data._id);
                 }
@@ -47,8 +47,13 @@ export default function LoginRegister() {
     /* Check if the user is login on mount */
     const navigate = useNavigate();
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-    // After loading check if a user already logged in
+    // After loading check if a user or a professional is already logged in
     useEffect(() => {
+
+        if(currentUser?.isProfessional) {
+            navigate(`/article/user/${currentUser._id}`);
+        }
+
         if(currentUser && resultId) {
           navigate(`/quiz/result/${resultId}`);
         }
