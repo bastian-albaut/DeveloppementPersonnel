@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import SectionArticles from "../components/dashboard/sectionArticles";
 import SectionTips from "../components/dashboard/sectionTips";
 import Appbar from "../components/general/Appbar";
@@ -15,7 +15,6 @@ export default function Dashboard() {
 
     /* Check if the user is login on mount */
     const {currentUser, isLoading, getToken } = useContext(CurrentUserContext);
-
     // Display loading screen on mount
     if (isLoading) {
         return (
