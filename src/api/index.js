@@ -16,7 +16,7 @@ export const register = (data) => API.post('/user/register', data);
 export const getUser = (token) => API.get('/user', { headers: { Authorization: token } });
 export const postResult = (data) => API.post('/result', data);
 export const getResult = (resultId) => API.get(`/result/${resultId}`);
-export const getResultId = (userId) => API.get(`/result/user/${userId}`);
+export const getResultByUserId = (userId) => API.get(`/result/user/${userId}`);
 export const getAllCategories = () => API.get('/categorie');
 export const getCategoryByName = (categoryName) => API.get(`/categorie/${categoryName}`);
 export const postArticle = (data) => API.post('/article', data);

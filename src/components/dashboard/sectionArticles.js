@@ -6,7 +6,7 @@ import CardViewWideScreen from "../article/cardViewWideScreen";
 import CardViewSmallScreen from "../article/cardViewSmallScreen";
 import articles from "../../assets/article/listArticles";
 import styles from "../../styles/components/dashboard/sectionArticles.module.scss"
-import { getAllArticles, getResultId } from "../../api";
+import { getAllArticles, getResultByUserId } from "../../api";
 import Loading from "../general/Loading";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ export default function SectionArticles(props) {
         }
 
         const fetchResult = async () => {
-            const resultat = await getResultId(props.currentUser._id);
+            const resultat = await getResultByUserId(props.currentUser._id);
             if(resultat && resultat.data) {
                 setResult(resultat.data);
                 console.log(resultat.data);
