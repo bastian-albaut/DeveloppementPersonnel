@@ -1,0 +1,81 @@
+@import "../../abstract/variables.module.scss";
+
+#boxSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 30px;
+    height: calc(100vh - $minHeightAppBarSmallScreen);
+}
+
+#boxSectionText {
+}
+
+#typoDescription {
+    width: 40vw;
+    margin: 10px 0 20px 0;
+}
+
+#boxUpSectionImage {
+    height: 300px;
+}
+
+.illustration {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media only screen and (max-width: 480px){
+    .illustration {
+        width: 80%;
+    }
+}
+
+/* Small devices (phones, between 480px and 600px) */
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+    .illustration {
+        width: 70%;
+    }
+}
+
+/* Medium devices (portrait tablets and large phones, between 600px and 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    .illustration {
+        width: 60%;
+    }
+}
+
+/* Small and Medium devices (portrait tablets and large phones, 768px and down) */
+@media only screen and (max-width: 768px) {
+    #boxSection {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 15px 0 15px;
+    }
+
+    #boxUpSectionImage {
+        height: 100px;
+    }
+
+    #boxSectionImage {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .illustration {
+        margin: auto;
+    }
+
+    #typoDescription {
+        width: 100%;
+    }
+}
+
+/* Medium and Large devices (Tablets and laptops/desktops, 600px and up) */
+@media only screen and (min-width: 600px) {
+    #boxSection {
+        height: calc(90vh - $minHeightAppBarWideScreen);
+    }
+}
