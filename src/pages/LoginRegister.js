@@ -6,29 +6,37 @@ import { Alert, Box } from "@mui/material";
 
 import styles from "../styles/pages/loginRegister.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
-import CurrentUserContext from "../contexts/currentUserToken";
 import Loading from "../components/general/Loading";
 import { getResultByUserId, getUser } from "../api";
+import AlertComponent from "../components/general/Alert";
 
 export default function LoginRegister() {
 
-    const [haveAccount, setHaveAccount] = useState(true);
-
+    const [haveAccount, setHaveAccount] = useState(false);
+    
     const [error, setError] = useState('');
-
+    
     const handleShowError = (msg) => {
         setError(msg)
         setTimeout(() => {
             setError('')
         }, 5000)
     }
-
-    // Get the result of the quiz from the state if the user come from the quiz page
-    let resultQuiz = null;
+    
+    // Display alert message and get the result of the quiz and the message from the state if the user come from the quiz page
     const location = useLocation();
-    if(location.state !== null) {
-        resultQuiz = location.state.resultQuiz;
-    }
+    
+    const [message, setMessage] = useState(location?.state?.message);
+    const [resultQuiz, setResultQuiz] = useState(location?.state?.resultQuiz);
+    useEffect(() => {
+        console.log(resultQuiz)
+        console.log(message)
+        if(message) {
+            setTimeout(() => {
+                setMessage('');
+            }, 4000)
+        }
+    }, [message])
 
     // Get the result id correponding to the user
     const [resultId, setResultId] = useState(null);
@@ -111,18 +119,19 @@ export default function LoginRegister() {
     return(
         <>
             <Appbar />
+            {message && <AlertComponent message={message} severity="success" />}
             {error ? (
                 <Box className={styles.boxAlert}>
                     <Alert className="alert" severity="error" onClose={() => {setError('')}}>{error}</Alert>
                 </Box>
             ) : (
-            null
-            )}
+                null
+                )}
             {haveAccount ? (
                 <Login setHaveAccount={setHaveAccount} handleShowError={handleShowError} />
-            ) : (
-                <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError} resultQuiz={resultQuiz} />
-            )}
+                ) : (
+                    <Register setHaveAccount={setHaveAccount} handleShowError={handleShowError} resultQuiz={resultQuiz} />
+                )}
         </>
     );
 }
