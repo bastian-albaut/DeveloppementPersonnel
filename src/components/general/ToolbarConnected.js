@@ -3,76 +3,94 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getResultId } from "../../api";
+import { getResultByUserId } from "../../api";
 
 
 export default function ToolbarConnected(props) {
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
 
-  const handleLogout = () => {
-    handleCloseUserMenu();
-    localStorage.removeItem('token');
-    navigate('/');
-  }
+    const navigate = useNavigate()
 
-  const handleResultat = () => {
-    handleCloseUserMenu();
-    navigate(`/quiz/result/${resultId}`);
-  }
+    const handleLogout = () => {
+        handleCloseUserMenu();
+        localStorage.removeItem('token');
+        navigate('/');
+    }
+
+    const handleResultat = () => {
+        handleCloseNavMenu();
+        navigate(`/quiz/result/${resultId}`);
+    }
+
+    const handleDashboard = () => {
+        handleCloseNavMenu();
+        navigate(`/tableaudebord/${props.currentUser._id}`);
+    }
 
     const handleMyArticles = () => {
-        handleCloseUserMenu();
+        handleCloseNavMenu();
         navigate(`/article/user/${props.currentUser._id}`);
     }
 
-  const navigate = useNavigate()
-  const navigateNavMenu = (path) => {
-    handleCloseNavMenu();
-    navigate(path);
-  }
-
-  const pages = [
-    {
-      name: 'Tableau de bord',
-      path : `/tableaudebord/${props.currentUser._id}`
-    }, 
-    {
-      name: 'Article',
-      path : `/tableaudebord/${props.currentUser._id}`
-    },
-    {
-      name: 'Astuces',
-      path : `/tableaudebord/${props.currentUser._id}`
+    const handleCreateArticle = () => {
+        handleCloseNavMenu();
+        navigate(`/article/create`);
     }
-  ];
+
 
     // Get the result id correponding to the user
     const [resultId, setResultId] = useState(null);
     useEffect(() => {
         const fetchResultId = async () => {
-            const result = await getResultId(props.currentUser._id);
+            const result = await getResultByUserId(props.currentUser._id);
             if(result && result.data) {
                 setResultId(result.data._id);
             }
         }
         fetchResultId();
     }, [])
+  
+    let pages = [];
+    if(props.currentUser.isProfessional) {
+        pages = [
+            {
+              name: 'Mes articles',
+              function : handleMyArticles
+            }, 
+            {
+                name: 'Créer article',
+                function : handleCreateArticle
+            },
+        ];
+    } else {
+        pages = [
+            {
+                name: 'Résultat',
+                function : handleResultat
+            },
+            {
+                name: 'Tableau de bord',
+                function : handleDashboard
+            },
+        ];
+    }
 
   return (
     <AppBar position="static">
@@ -123,11 +141,11 @@ export default function ToolbarConnected(props) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page, index) => (
-                <MenuItem key={index} onClick={() => navigateNavMenu(page.path)}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
+                {pages.map((item, index) => (
+                    <MenuItem key={index} onClick={item.function}>
+                      <Typography textAlign="center">{item.name}</Typography>
+                    </MenuItem>
+                ))}
 
             </Menu>
           </Box>
@@ -148,14 +166,8 @@ export default function ToolbarConnected(props) {
             Développement Personnel
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page, index) => (
-              <Button
-                key={index}
-                onClick={() => navigateNavMenu(page.path)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page.name}
-              </Button>
+            {pages.map((item, index) => (
+                <Button key={index} onClick={item.function} sx={{ my: 2, color: 'white', display: 'block' }}>{item.name}</Button>
             ))}
           </Box>
 
@@ -181,12 +193,6 @@ export default function ToolbarConnected(props) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleResultat}>
-                <Typography textAlign="center">Mes résultats</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleMyArticles}>
-                <Typography textAlign="center">Mes articles</Typography>
-              </MenuItem>
               <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Déconnexion</Typography>
               </MenuItem>
