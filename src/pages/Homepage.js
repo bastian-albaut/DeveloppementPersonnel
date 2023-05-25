@@ -4,12 +4,24 @@ import { scrollIntoView } from "seamless-scroll-polyfill";
 
 import SectionOne from '../components/homepage/SectionOne';
 import SectionTwo from '../components/homepage/sectionTwo';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../components/general/Loading';
 import { getUser } from '../api';
+import AlertComponent from '../components/general/Alert';
 
 export default function HomePage() {
     
+    // Display alert message
+    const location = useLocation();
+    const [message, setMessage] = useState(location?.state?.message);
+    useEffect(() => {
+        if(message) {
+            setTimeout(() => {
+                setMessage('');
+            }, 4000)
+        }
+    }, [message])
+
     // Button "Commencer"
     const refBegin = useRef(null);
     const scrollBegin = () => {
@@ -81,6 +93,7 @@ export default function HomePage() {
 
     return(
         <>
+            {message && <AlertComponent message={message} severity="success" />}
             <SectionOne scrollBegin={scrollBegin} handleNavigateLogin={handleNavigateLogin}/>
             <SectionTwo refBegin={refBegin} handleNavigateLogin={handleNavigateLogin}/>
         </>

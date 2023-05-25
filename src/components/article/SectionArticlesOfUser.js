@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Delete from '@mui/icons-material/Delete';
 import styles from "../../styles/components/article/sectionArticlesOfUser.module.scss";
 import { useNavigate } from "react-router-dom";
 import { deleteArticle } from "../../api";
+import AlertComponent from "../general/Alert";
 
 const SectionArticlesOfUser = (props) => {
 
@@ -28,11 +29,28 @@ const SectionArticlesOfUser = (props) => {
 
     const navigate = useNavigate();
 
+    // Display alert message
+    const [message, setMessage] = useState(null);
+    const [severity, setSeverity] = useState(null);
+    useEffect(() => {
+        if(message) {
+            setTimeout(() => {
+                setMessage('');
+                setSeverity(null);
+            }, 4000)
+        }
+    }, [message])
+
     const handleDelete = async (id) => {
         const result = await deleteArticle(id);
         if(result && result.data) {
             console.log(result.data);
             props.setArticles(props.articles.filter((article) => article._id !== id));
+            setMessage("L'article a bien été supprimé.");
+            setSeverity("success");
+        } else {
+            setMessage("Une erreur est survenue lors de la suppression de l'article.");
+            setSeverity("error");
         }
     }
 
@@ -47,6 +65,7 @@ const SectionArticlesOfUser = (props) => {
 
     return (
         <>
+        {message && <AlertComponent message={message} severity={severity} />}
         <Typography id={styles.typoTitlePage} variant="h3" color="initial">Mes articles</Typography>
             {props.articles.map((article) => (
                 <Box key={article._id} id={styles.card} onClick={() => navigate(`/article/${article._id}`)}>

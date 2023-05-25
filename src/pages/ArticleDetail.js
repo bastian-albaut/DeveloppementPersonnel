@@ -1,13 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getArticle, getUser } from "../api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/general/Loading";
 import Appbar from "../components/general/Appbar";
 import SectionDetailArticle from "../components/article/sectionDetailArticle";
 import CurrentUserContext from "../contexts/currentUserToken";
 import RefuseAccess from "../components/general/RefuseAccess";
+import AlertComponent from "../components/general/Alert";
 
 const ArticleDetail = () => {
+
+    // Display alert message
+    const location = useLocation();
+    const [message, setMessage] = useState(location?.state?.message);
+    useEffect(() => {
+        if(message) {
+            setTimeout(() => {
+                setMessage('');
+            }, 4000)
+        }
+    }, [message])
+
 
     // Get the article id from the url
     const url = window.location.href;
@@ -93,6 +106,7 @@ const ArticleDetail = () => {
     return (
         <>
             <Appbar currentUser={currentUser}/>
+            {message && <AlertComponent message={message} severity="success" />}
             <SectionDetailArticle currentArticle={currentArticle} />
         </>
     );

@@ -56,7 +56,7 @@ const ContentCreateArticle = (props) => {
                 const result = await postArticle(props.formData);
                 if(result && result.data) {
                     console.log(result.data)
-                    navigate(`/article/${result.data.article._id}`)
+                    navigate(`/article/${result.data.article._id}`, { state: { message: 'Article créé avec succès !' } })
                 }
             }
         }

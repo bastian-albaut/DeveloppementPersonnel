@@ -31,7 +31,7 @@ export default function ToolbarConnected(props) {
     const handleLogout = () => {
         handleCloseUserMenu();
         localStorage.removeItem('token');
-        navigate('/');
+        navigate('/', { state: { message: "Vous êtes deconnecté !" } });
     }
 
     const handleResultat = () => {

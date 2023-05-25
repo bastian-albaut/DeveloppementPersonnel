@@ -92,7 +92,7 @@ export default function Quiz() {
         resultQuizToPersist.score = resultAdditionate;
         
         // Navigate to the login page with the result of the quiz
-        navigate(`/login`, { state: { resultQuiz: resultQuizToPersist } });
+        navigate(`/login`, { state: { resultQuiz: resultQuizToPersist, message: "Quiz effectué avec succès !" } });
 
     }
 
@@ -162,13 +162,6 @@ export default function Quiz() {
             <RefuseAccess />
         );
     }
-
-
-    if (isLoading) {
-        return (
-            <Loading />
-        );
-    } 
 
     return(
         <>
