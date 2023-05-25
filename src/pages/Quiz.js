@@ -157,7 +157,7 @@ export default function Quiz() {
     } 
 
     // Refuse access if logged in or if professional
-    if(currentUser || getToken() || currentUser.isProfessional) {
+    if(currentUser || getToken() || currentUser?.isProfessional) {
         return (
             <RefuseAccess />
         );
