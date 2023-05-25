@@ -11,42 +11,44 @@ const CurrentUserProvider = ({ children }) => {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isProfessional, setIsProfessional] = useState(false);
 
-  useEffect(() => {
-    
-    const fetchData = async () => {
-        console.log("test1")
-        const token = getToken();
-        console.log("test2")
-        if(token) {
-            try {
-                console.log("test3")
-                const user = await getUser(token);
-                if (user) {
-                    console.log("test4")
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = getToken();
 
-                    setCurrentUser(user.data);
-                    console.log(user.data)
-                    if(user.data.isProfessional) {
-                        setIsProfessional(true);
+            if(!token) {
+                setCurrentUser(null);
+                setIsLoading(false);
+                return;
+            }
+
+            if(token) {
+                try {
+                    const user = await getUser(token);
+                    if (user) {
+                        setCurrentUser(user.data);
+                    }
+                } catch (error) {
+                    setCurrentUser(null);
+                    if(error.response.status === 401) {
+                        localStorage.removeItem('token');
                     }
                 }
-            } catch (error) {
-                setCurrentUser(null);
-                if(error.response.status === 401) {
-                    localStorage.removeItem('token');
-                }
             }
-        }
-      setIsLoading(false);
-    };
+        };
+        fetchData();
+    }, []);
 
-    fetchData();
-  }, []);
+    // Wait for the user to be set to change the loading state
+    useEffect(() => {
+        if(currentUser) {
+            setIsLoading(false);
+        }
+    }, [currentUser])
+
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, isLoading, getToken, isProfessional }}>
+    <CurrentUserContext.Provider value={{ currentUser, isLoading, getToken }}>
       {children}
     </CurrentUserContext.Provider>
   );
