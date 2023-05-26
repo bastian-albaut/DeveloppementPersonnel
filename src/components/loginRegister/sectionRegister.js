@@ -9,7 +9,7 @@ import { register, postResult } from "../../api";
 
 export default function Register(props) {
 
-    const [formData, setFormData] = useState({pseudonym: '', mail: '', password: '', file: { name: '', size: '', contentType: '' }});
+    const [formData, setFormData] = useState({pseudonym: '', mail: '', password: '', picture: ''});
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -17,11 +17,24 @@ export default function Register(props) {
         console.log(formData);
     }, [formData])
 
-    const handleFileSelect = (file) => {
+    const handleFileSelect = async (file) => {
         setSelectedFile(file);
-        console.log(file)
-        setFormData({...formData, file: { name: file.name, size: file.size, contentType: file.type }})
+        const base64 = await convertBase64(file);
+        setFormData({...formData, picture: base64})
     };
+
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error)
+            }
+        })
+    }
 
     const navigate = useNavigate();
 
