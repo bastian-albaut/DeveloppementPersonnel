@@ -9,7 +9,7 @@ import { getUser } from '../api';
 const ArticleCreate = () => {
 
     const [informationsFilled, setInformationsFilled] = useState(false);
-    const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: "", author_name: ''});
+    const [formData, setFormData] = useState({ title: "", description: "", categorie_id :"",  category_name: "", date: Date.now(), author_id: "", author_name: "", picture: "", content: ""});
 
     /* Check if the user is login on mount */
     const getToken = () => {

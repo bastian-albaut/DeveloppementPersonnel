@@ -13,6 +13,7 @@ const ArticleDetail = () => {
     // Display alert message
     const location = useLocation();
     const [message, setMessage] = useState(location?.state?.message);
+    location.state = {};
     useEffect(() => {
         if(message) {
             setTimeout(() => {
@@ -33,6 +34,7 @@ const ArticleDetail = () => {
         const fetchArticle = async () => {
             const result = await getArticle(articleId);
             if(result && result.data) {
+                console.log(result.data)
                 setCurrentArticle(result.data);
             } else {
                 navigate('/');

@@ -55,7 +55,6 @@ const ContentCreateArticle = (props) => {
                 console.log(props.formData);
                 const result = await postArticle(props.formData);
                 if(result && result.data) {
-                    console.log(result.data)
                     navigate(`/article/${result.data.article._id}`, { state: { message: 'Article créé avec succès !' } })
                 }
             }
@@ -235,7 +234,7 @@ const ContentCreateArticle = (props) => {
                 <Typography id={styles.typoCategory} variant="h6">{props.formData.category_name}</Typography>
                 <Typography id={styles.typoTitle} variant="h3">{props.formData.title}</Typography>
                 <Typography id={styles.typoDescription} variant="h5">{props.formData.description}</Typography>
-                <img id={styles.image} src="https://picsum.photos/800/300" alt="description de l'article" />
+                <img id={styles.image} src={props.formData.picture} alt={props.formData.title} />
                 <Box id={styles.boxAuthorDate}>
                     <Box id={styles.subBoxAuthorDate}>
                         <Box id={styles.boxAuthor}>

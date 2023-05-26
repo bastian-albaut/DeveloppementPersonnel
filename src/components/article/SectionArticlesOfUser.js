@@ -69,7 +69,7 @@ const SectionArticlesOfUser = (props) => {
         <Typography id={styles.typoTitlePage} variant="h3" color="initial">Mes articles</Typography>
             {props.articles.map((article) => (
                 <Box key={article._id} id={styles.card} onClick={() => navigate(`/article/${article._id}`)}>
-                    <img id={styles.image} alt={props.title} src="https://picsum.photos/800/300"/>
+                    <img id={styles.image} alt={props.title} src={article.picture}/>
                     <Box id={styles.boxSectionTypo}>
                         <Box id={styles.boxSubSectionTypo}>
                             <Typography id={styles.typoCategorie} variant="body2" color="initial">{article.categorie_name}</Typography>

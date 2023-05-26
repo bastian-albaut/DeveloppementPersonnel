@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../../styles/components/article/formCreateArticle.module.scss"
 import { getAllCategories } from "../../api";
 import { useNavigate } from "react-router-dom";
+import FileInput from "../loginRegister/FileInput";
 
 const FormCreateArticle = (props) => {
 
@@ -22,6 +23,28 @@ const FormCreateArticle = (props) => {
 
         fetchAllCategories();
     }, [])
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    
+    
+    const handleFileSelect = async (file) => {
+        setSelectedFile(file);
+        const base64 = await convertBase64(file);
+        props.setFormData({...props.formData, picture: base64})
+    };
+    
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            };
+            fileReader.onerror = (error) => {
+                reject(error)
+            }
+        })
+    }
 
 
     return (
@@ -46,6 +69,9 @@ const FormCreateArticle = (props) => {
                         )
                     })}
                 </Select>
+            </Box>
+            <Box id={styles.boxFileInput}>
+                <FileInput selectedFile={selectedFile} handleFileSelect={handleFileSelect} />
             </Box>
 
             <Box id={styles.boxButton}>

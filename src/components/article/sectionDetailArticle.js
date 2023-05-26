@@ -85,7 +85,7 @@ const SectionDetailArticle = (props) => {
                 <Typography id={styles.typoCategory} variant="h6">{props.currentArticle.categorie_name}</Typography>
                 <Typography id={styles.typoTitle} variant="h3">{props.currentArticle.title}</Typography>
                 <Typography id={styles.typoDescription} variant="h5">{props.currentArticle.description}</Typography>
-                <img id={styles.image} src="https://picsum.photos/800/300" alt="description de l'article" />
+                <img id={styles.image} src={props.currentArticle.picture} alt={props.currentArticle.title} />
                 <Box id={styles.boxAuthorDate}>
                     <Box id={styles.subBoxAuthorDate}>
                         <Box id={styles.boxAuthor}>

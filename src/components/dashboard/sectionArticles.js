@@ -100,7 +100,7 @@ export default function SectionArticles(props) {
             id={article._id}
             key={index}
             title={article.title}
-            picture="https://picsum.photos/500/300"
+            picture={article.picture}
             categorie_name={article.categorie_name}
             date={article.date}
             onDragStart={handleDragStart}
@@ -115,7 +115,7 @@ export default function SectionArticles(props) {
             id={article._id}
             key={index}
             title={article.title}
-            picture="https://picsum.photos/500/300"
+            picture={article.picture}
             categorie_name={article.categorie_name}
             date={article.date}
             onDragStart={handleDragStart}
