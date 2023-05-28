@@ -116,7 +116,7 @@ export default function Register(props) {
 
     return (
         <Box id={styles.boxSection}>
-            <Typography id={styles.typoTitle} variant="h2">Créer un compte</Typography>
+            <Typography id={styles.typoTitle} variant="h3">Créer un compte</Typography>
             <form id={styles.boxFormRegister}>
                 <TextField id={styles.textFieldPseudonym} onChange={(e) => setFormData({...formData, pseudonym: e.target.value})} label="Pseudo" variant="standard" margin="dense" required />
                 <TextField id={styles.textFieldMail} onChange={(e) => setFormData({...formData, mail: e.target.value})} label="Adresse mail" variant="standard" margin="dense" required />

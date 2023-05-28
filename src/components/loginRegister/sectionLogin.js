@@ -60,7 +60,7 @@ export default function Login(props) {
         <Box id={styles.sectionSignIn}>
             
             <Box id={styles.boxSection}>
-                <Typography id={styles.titleSignIn} variant="h2" color="black">Se connecter</Typography>
+                <Typography id={styles.titleSignIn} variant="h3" color="black">Se connecter</Typography>
                 <Box id={styles.boxFormSignIn}>
                     <TextField label="Adresse mail" variant="standard" margin="dense" onChange={(e) => setData({...data, mail: e.target.value})}/>
                     <TextField type={showPassword ? "text" : "password"} label="Mot de passe" variant="standard" margin="dense" onChange={(e) => setData({...data, password: e.target.value})} InputProps={{ // <-- This is where the toggle button is added.

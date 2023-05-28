@@ -109,7 +109,7 @@ export default function ToolbarConnected(props) {
               textDecoration: 'none',
             }}
           >
-            Développement Personnel
+            Évoluer Ensemble
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -163,7 +163,7 @@ export default function ToolbarConnected(props) {
               textDecoration: 'none',
             }}
           >
-            Développement Personnel
+            Évoluer Ensemble
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((item, index) => (

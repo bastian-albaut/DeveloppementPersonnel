@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Kalam&family=Raleway&display=swap');
 @import "./abstract/variables.module.scss";
 
 * {
@@ -21,4 +21,8 @@ html {
 
 .alice-carousel__stage-item {
   margin: 0 0 10px 0 !important;
+}
+
+.tc-cell {
+    border: 1px solid black !important;
 }

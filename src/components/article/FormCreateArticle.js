@@ -1,9 +1,10 @@
-import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, MenuItem, Select, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/components/article/formCreateArticle.module.scss"
 import { getAllCategories } from "../../api";
 import { useNavigate } from "react-router-dom";
 import FileInput from "../loginRegister/FileInput";
+import Loading from "../general/Loading";
 
 const FormCreateArticle = (props) => {
 
@@ -26,7 +27,6 @@ const FormCreateArticle = (props) => {
 
     const [selectedFile, setSelectedFile] = useState(null);
     
-    
     const handleFileSelect = async (file) => {
         setSelectedFile(file);
         const base64 = await convertBase64(file);
@@ -46,6 +46,9 @@ const FormCreateArticle = (props) => {
         })
     }
 
+    if(!allCategories) {
+        return <Loading />
+    }
 
     return (
         <Box id={styles.boxSection}>

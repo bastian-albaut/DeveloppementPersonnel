@@ -57,7 +57,7 @@ const SectionArticlesOfUser = (props) => {
     if(props.articles.length === 0) {
         return (
             <>
-                <Typography id={styles.typoTitlePage} variant="h3" color="initial">Mes articles</Typography>
+                <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
                 <Typography variant="h6" color="initial">Vous n'avez pas encore écrit d'article...</Typography>
             </>
         );
@@ -66,7 +66,7 @@ const SectionArticlesOfUser = (props) => {
     return (
         <>
         {message && <AlertComponent message={message} severity={severity} />}
-        <Typography id={styles.typoTitlePage} variant="h3" color="initial">Mes articles</Typography>
+        <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
             {props.articles.map((article) => (
                 <Box key={article._id} id={styles.card} onClick={() => navigate(`/article/${article._id}`)}>
                     <img id={styles.image} alt={props.title} src={article.picture}/>

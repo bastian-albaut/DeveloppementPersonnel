@@ -8,14 +8,14 @@ export default function SectionOne(props) {
     return(
         <>
             <Box id={styles.sectionOne}>
-                <Typography id={styles.typoLogo} variant="h6" color="text.primary">Développement Personnel</Typography>
+                <Typography id={styles.typoLogo} variant="h6" color="text.primary">Évoluer Ensemble</Typography>
                 <Box id={styles.subSection}>
                     <Box id={styles.subSectionLeft}>
                         <Box id={styles.boxTitle}>
-                            <Typography id={styles.typoTitle} variant="h1" color="text.primary">Évoluer Ensemble : La Plateforme de Développement Personnel Collaborative</Typography>
+                            <Typography id={styles.typoTitle} variant="h1" color="text.primary">Évoluer Ensemble : Votre Plateforme de Développement Personnel</Typography>
                         </Box>
                         <Box id={styles.boxSubtitle}>
-                            <Typography id={styles.typoSubtitle} variant="h2" color="text.primary">Trouvez votre chemin vers l'épanouissement personnel grâce à notre quiz, nos articles rédigés par des professionnels, et notre communauté bienveillante.</Typography>
+                            <Typography id={styles.typoSubtitle} variant="h2" color="text.primary">Trouvez votre chemin vers l'épanouissement personnel grâce à notre quiz, nos articles rédigés par des professionnels, et notre bienveillance.</Typography>
 
                         </Box>
                         <Box id={styles.boxButton}>

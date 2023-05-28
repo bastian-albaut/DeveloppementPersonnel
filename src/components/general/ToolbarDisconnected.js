@@ -26,7 +26,7 @@ export default function ToolbarDisconnected() {
                     <ArrowBack id={styles.backIcon}/>
                 </IconButton>
                 <Typography id={styles.typoTitle} variant="h6" component="div" color="text.primary">
-                    Développement Personnel
+                    Évoluer Ensemble
                 </Typography>
             </Toolbar>
         </AppBar>

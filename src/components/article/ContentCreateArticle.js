@@ -6,7 +6,6 @@ import List from '@editorjs/list';
 import Quote from '@editorjs/quote';
 import Table from '@editorjs/table';
 import styles from "../../styles/components/article/contentCreateArticle.module.scss";
-import InlineImage from 'editorjs-inline-image';
 import Delimiter from '@editorjs/delimiter';
 import { i18n } from '@editorjs/editorjs';
 import Marker from '@editorjs/marker';
@@ -84,15 +83,6 @@ const ContentCreateArticle = (props) => {
                 quote: Quote,
                 delimiter: Delimiter,
                 table: Table,
-                image: {
-                    class: InlineImage,
-                    inlineToolbar: true,
-                    config: {
-                      embed: {
-                        display: true,
-                      },
-                    }
-                },
                 Marker: {
                 class: Marker,
                 shortcut: 'CMD+SHIFT+M',
@@ -149,7 +139,6 @@ const ContentCreateArticle = (props) => {
                     "Underline": "Souligné",
                     "Strikethrough": "Barré",
                     "InlineCode": "Code en ligne",
-                    "InlineImage": "Image",
                   },
               
                   /**
@@ -229,7 +218,7 @@ const ContentCreateArticle = (props) => {
 
     return (
         <Box id={styles.boxSection}>
-            <Typography id={styles.typoTitlePage} variant="h2">Creation d'un article</Typography>
+            <Typography id={styles.typoTitlePage} variant="h4">Prévisualisation de l'article</Typography>
             <Box id={styles.boxArticle}>
                 <Typography id={styles.typoCategory} variant="h6">{props.formData.category_name}</Typography>
                 <Typography id={styles.typoTitle} variant="h3">{props.formData.title}</Typography>
