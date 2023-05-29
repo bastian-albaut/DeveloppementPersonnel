@@ -14,8 +14,6 @@ import LoginRegister from './pages/LoginRegister';
 import ArticleCreate from './pages/ArticleCreate';
 import CurrentUserProvider from './providers/currentUserProvider';
 import ArticleDetail from './pages/ArticleDetail';
-import ArticlesOfUser from './pages/ArticlesOfUser';
-import TipsOfUser from './pages/TipsOfUser';
 import DashboardProfessional from './pages/DashboardProfessional';
 
 const { palette } = createTheme();
@@ -127,7 +125,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} width="100%"/>
               <Route path="/quiz" element={<Quiz />} width="100%"/>
-              <Route path="/quiz/resultatat/:id" element={<QuizResult />} width="100%"/>
+              <Route path="/quiz/resultat/:id" element={<QuizResult />} width="100%"/>
               <Route path="/tableaudebord/utilisateur/:id" element={<Dashboard />} width="100%"/>
               <Route path="/tableaudebord/professionnel/:id" element={<DashboardProfessional />} width="100%"/>
               <Route path="/connexion" element={<LoginRegister />} width="100%"/>

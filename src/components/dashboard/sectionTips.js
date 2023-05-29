@@ -33,7 +33,7 @@ export default function SectionTips() {
 
     const handleDragStart = (e) => e.preventDefault();
     
-    const items1 = tips.map((tip, index) => (
+    const items1 = tips?.map((tip, index) => (
       <CardViewWideScreen 
         key={index}
         content={tip.content}
@@ -46,7 +46,7 @@ export default function SectionTips() {
       />
     ));
 
-      const items2 = tips.map((tip, index) => (
+      const items2 = tips?.map((tip, index) => (
         <CardViewSmallScreen
         key={index}
         content={tip.content}

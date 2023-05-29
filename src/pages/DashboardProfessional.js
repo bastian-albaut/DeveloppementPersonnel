@@ -7,6 +7,7 @@ import Appbar from "../components/general/Appbar";
 import AlertComponent from "../components/general/Alert";
 import SectionArticlesOfUser from "../components/article/SectionArticlesOfUser";
 import SectionTipsOfUser from "../components/tip/SectionTipsOfUser";
+import { Box } from "@mui/material";
 
 const DashboardProfessional = () => {
     // Display alert message
@@ -64,6 +65,9 @@ const DashboardProfessional = () => {
         fetchTips();
     }, []);
 
+    useEffect(() => {
+        console.log(tips)
+    }, [tips])
 
     /* Check if the user is login on mount */
     const getToken = () => {
@@ -127,7 +131,8 @@ const DashboardProfessional = () => {
             <Appbar currentUser={currentUser} />
             {message && <AlertComponent message={message} severity="success" />}
             <SectionArticlesOfUser articles={articles} setArticles={setArticles}/>
-            <SectionTipsOfUser tips={tips} setTips={setTips}/>
+            <Box sx={{ height: 50 }}></Box>
+            <SectionTipsOfUser currentUser={currentUser} tips={tips} setTips={setTips}/>
         </>
     );
 }

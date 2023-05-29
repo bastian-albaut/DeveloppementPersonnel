@@ -82,7 +82,6 @@ const SectionArticlesOfUser = (props) => {
     };
 
     const handleConfirmDelete = async () => {
-        console.log("test")
         setIsConfirmationOpen(false);
         if (selectedArticleId) {
             const result = await deleteArticle(selectedArticleId);
@@ -101,14 +100,18 @@ const SectionArticlesOfUser = (props) => {
     const handleCancelDelete = () => {
         setIsConfirmationOpen(false);
         setSelectedArticleId(null);
-      };
+    };
+
+    const handleAddArticle = () => {
+        navigate(`/article/creation`);
+    }
 
     return (
         <>
         {message && <AlertComponent message={message} severity={severity} />}
         <Box id={styles.boxTitleButton}>
             <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
-            <Button variant="contained" color="primary">Ajouter un article</Button>
+            <Button variant="contained" color="primary" onClick={handleAddArticle}>Ajouter un article</Button>
         </Box>
             <Box id={styles.boxDataGrid}>
                 <DataGrid

@@ -30,3 +30,4 @@ export const getTip = (tipId) => API.get(`/tip/${tipId}`);
 export const getAllTips = () => API.get('/tip');
 export const getTipsById = (userId) => API.get(`/tip/user/${userId}`);
 export const deleteTip = (tipId) => API.delete(`/tip/${tipId}`);
+export const updateTip = (tipId, data) => API.put(`/tip/${tipId}`, data);

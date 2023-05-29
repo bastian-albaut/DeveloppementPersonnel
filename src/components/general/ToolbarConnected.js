@@ -36,6 +36,8 @@ export default function ToolbarConnected(props) {
 
     const handleResultat = () => {
         handleCloseNavMenu();
+        console.log("clique resultat")
+        console.log(resultId)
         navigate(`/quiz/resultat/${resultId}`);
     }
 
