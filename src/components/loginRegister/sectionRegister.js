@@ -105,7 +105,7 @@ export default function Register(props) {
                     // Redirect to the result page
                     console.log("res.data");
                     console.log(res.data);
-                    navigate(`/quiz/result/${res.data.result._id}`);
+                    navigate(`/quiz/resultat/${res.data.result._id}`);
                 }
             } catch(error) {
                 console.log(error);

@@ -38,7 +38,7 @@ export default function HomePage() {
     // Navigate to the login page
     const navigate = useNavigate();
     const handleNavigateLogin = () => {
-        navigate('/login');
+        navigate('/connexion');
     }
 
     /* Check if the user is login on mount */

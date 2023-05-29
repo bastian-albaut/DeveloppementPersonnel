@@ -36,7 +36,7 @@ export default function ToolbarConnected(props) {
 
     const handleResultat = () => {
         handleCloseNavMenu();
-        navigate(`/quiz/result/${resultId}`);
+        navigate(`/quiz/resultat/${resultId}`);
     }
 
     const handleDashboard = () => {
@@ -46,12 +46,12 @@ export default function ToolbarConnected(props) {
 
     const handleMyArticles = () => {
         handleCloseNavMenu();
-        navigate(`/article/user/${props.currentUser._id}`);
+        navigate(`/article/utilisateur/${props.currentUser._id}`);
     }
 
-    const handleCreateArticle = () => {
+    const handleMyTips = () => {
         handleCloseNavMenu();
-        navigate(`/article/create`);
+        navigate(`/astuce/utilisateur/${props.currentUser._id}`);
     }
 
 
@@ -71,12 +71,12 @@ export default function ToolbarConnected(props) {
     if(props.currentUser.isProfessional) {
         pages = [
             {
-              name: 'Mes articles',
+              name: 'Articles',
               function : handleMyArticles
             }, 
             {
-                name: 'Créer article',
-                function : handleCreateArticle
+                name: 'Astuces',
+                function : handleMyTips
             },
         ];
     } else {

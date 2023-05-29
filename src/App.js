@@ -126,10 +126,10 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} width="100%"/>
               <Route path="/quiz" element={<Quiz />} width="100%"/>
-              <Route path="/quiz/result/:id" element={<QuizResult />} width="100%"/>
+              <Route path="/quiz/resultatat/:id" element={<QuizResult />} width="100%"/>
               <Route path="/tableaudebord/:id" element={<Dashboard />} width="100%"/>
-              <Route path="/login" element={<LoginRegister />} width="100%"/>
-              <Route path="/article/create" element={<ArticleCreate />} width="100%"/>
+              <Route path="/connexion" element={<LoginRegister />} width="100%"/>
+              <Route path="/article/creation" element={<ArticleCreate />} width="100%"/>
               <Route path="/article/:id" element={<ArticleDetail />} width="100%"/>
               <Route path="/article/utilisateur/:id" element={<ArticlesOfUser />} width="100%"/>
               <Route path="/astuce/utilisateur/:id" element={<TipsOfUser />} width="100%"/>

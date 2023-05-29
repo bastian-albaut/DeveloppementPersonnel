@@ -102,11 +102,11 @@ export default function LoginRegister() {
     useEffect(() => {
 
         if(currentUser?.isProfessional) {
-            navigate(`/article/user/${currentUser._id}`);
+            navigate(`/article/utilisateur/${currentUser._id}`);
         }
 
         if(currentUser && resultId) {
-          navigate(`/quiz/result/${resultId}`);
+          navigate(`/quiz/resultat/${resultId}`);
         }
     }, [currentUser, resultId])
 
