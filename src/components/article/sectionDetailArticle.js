@@ -89,7 +89,6 @@ const SectionDetailArticle = (props) => {
                 <Box id={styles.boxAuthorDate}>
                     <Box id={styles.subBoxAuthorDate}>
                         <Box id={styles.boxAuthor}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                             <Typography id={styles.typoAuthor} variant="body1" color="initial">{props.currentArticle.author_name}</Typography>
                         </Box>
                         <Typography id={styles.typoDate} variant="body1" color="initial">Le {new Date(props.currentArticle.date).toLocaleString('fr-FR', {dateStyle: 'long', timeStyle: 'medium'})}</Typography>

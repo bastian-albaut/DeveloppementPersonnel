@@ -7,7 +7,6 @@ import { Alert, Box } from "@mui/material";
 import styles from "../styles/pages/dashboard.module.scss"
 import SectionQuote from "../components/dashboard/sectionQuote";
 
-import CurrentUserContext from "../contexts/currentUserToken";
 import Loading from "../components/general/Loading";
 import RefuseAccess from "../components/general/RefuseAccess";
 import { getUser } from "../api";
@@ -26,6 +25,13 @@ export default function Dashboard() {
             }, 4000)
         }
     }, [message])
+
+    const [customMessage, setCustomMessage] = useState('');
+    useEffect(() => {
+        if(customMessage) {
+            setMessage(customMessage);
+        }
+    }, [customMessage])
 
 
     /* Check if the user is login on mount */
@@ -92,7 +98,7 @@ export default function Dashboard() {
             <Box id={styles.generalBox}>
                 <SectionQuote />
                 <SectionArticles currentUser={currentUser}/>
-                <SectionTips />
+                <SectionTips setCustomMessage={setCustomMessage}/>
             </Box>
         </>
     );

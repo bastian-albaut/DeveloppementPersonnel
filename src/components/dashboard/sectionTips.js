@@ -8,7 +8,7 @@ import styles from "../../styles/components/dashboard/sectionTips.module.scss"
 import { getAllTips } from "../../api";
 
 
-export default function SectionTips() {
+export default function SectionTips(props) {
 
     // Fetch all tips from API
     const [tips, setTips] = useState(null);
@@ -43,6 +43,7 @@ export default function SectionTips() {
         author_id={tip.author_id}
         author_name={tip.author_name}
         onDragStart={handleDragStart}
+        setCustomMessage={props.setCustomMessage}
       />
     ));
 
