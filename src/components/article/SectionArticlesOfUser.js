@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Delete from '@mui/icons-material/Delete';
 import styles from "../../styles/components/article/sectionArticlesOfUser.module.scss";
 import { useNavigate } from "react-router-dom";
 import { deleteArticle } from "../../api";
 import AlertComponent from "../general/Alert";
+import { DataGrid, frFR } from '@mui/x-data-grid';
+import ConfirmationDialog from "../general/ConfirmationDialog";
 
 const SectionArticlesOfUser = (props) => {
 
@@ -27,6 +29,36 @@ const SectionArticlesOfUser = (props) => {
         }
     }
 
+    const columns = [
+        { field: 'title', headerName: 'Titre', width: 800 },
+        { field: 'date', headerName: 'Date', width: 250 },
+        {
+            field: "actions",
+            headerName: "Actions",
+            width: 120,
+            sortable: false,
+            filterable: false,
+            renderCell: (params) => (
+              <Delete
+                id={styles.deleteIcon}
+                onClick={() => handleDelete(params.row.id)}
+                style={{ cursor: "pointer" }}
+              />
+            ),
+          }
+    ];
+
+    // Create another array rows that contain all articles with only title and description
+    const rowsArticles = props.articles.map((article) => {
+        return {
+            id: article._id,
+            title: article.title,
+            description: article.description,
+            date: displayDate(article.date)
+        }
+    });
+
+
     const navigate = useNavigate();
 
     // Display alert message
@@ -41,47 +73,63 @@ const SectionArticlesOfUser = (props) => {
         }
     }, [message])
 
+    const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+    const [selectedArticleId, setSelectedArticleId] = useState(null);
+
     const handleDelete = async (id) => {
-        const result = await deleteArticle(id);
-        if(result && result.data) {
-            console.log(result.data);
-            props.setArticles(props.articles.filter((article) => article._id !== id));
-            setMessage("L'article a bien été supprimé.");
-            setSeverity("success");
-        } else {
-            setMessage("Une erreur est survenue lors de la suppression de l'article.");
-            setSeverity("error");
+        setSelectedArticleId(id);
+        setIsConfirmationOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        console.log("test")
+        setIsConfirmationOpen(false);
+        if (selectedArticleId) {
+            const result = await deleteArticle(selectedArticleId);
+            if(result && result.data) {
+                console.log(result.data);
+                props.setArticles(props.articles.filter((article) => article._id !== selectedArticleId));
+                setMessage("L'article a bien été supprimé.");
+                setSeverity("success");
+            } else {
+                setMessage("Une erreur est survenue lors de la suppression de l'article.");
+                setSeverity("error");
+            }
         }
     }
 
-    if(props.articles.length === 0) {
-        return (
-            <>
-                <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
-                <Typography variant="h6" color="initial">Vous n'avez pas encore écrit d'article...</Typography>
-            </>
-        );
-    }
+    const handleCancelDelete = () => {
+        setIsConfirmationOpen(false);
+        setSelectedArticleId(null);
+      };
 
     return (
         <>
         {message && <AlertComponent message={message} severity={severity} />}
-        <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
-            {props.articles.map((article) => (
-                <Box key={article._id} id={styles.card} onClick={() => navigate(`/article/${article._id}`)}>
-                    <img id={styles.image} alt={props.title} src={article.picture}/>
-                    <Box id={styles.boxSectionTypo}>
-                        <Box id={styles.boxSubSectionTypo}>
-                            <Typography id={styles.typoCategorie} variant="body2" color="initial">{article.categorie_name}</Typography>
-                            <Typography id={styles.typoTitle} variant="h6" color="black">{article.title}</Typography>
-                        </Box>
-                        <Typography variant="body1" color="initial">{displayDate(article.date)}</Typography>
-                    </Box>
-                    <Box id={styles.boxDeleteIcon}>
-                        <Delete id={styles.deleteIcon} onClick={(event) => {event.stopPropagation(); handleDelete(article._id)}} />
-                    </Box>
-                </Box>
-            ))}
+        <Box id={styles.boxTitleButton}>
+            <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
+            <Button variant="contained" color="primary">Ajouter un article</Button>
+        </Box>
+            <Box id={styles.boxDataGrid}>
+                <DataGrid
+                    localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
+                    rows={rowsArticles}
+                    columns={columns}
+                    initialState={{
+                    pagination: {
+                        paginationModel: { page: 0, pageSize: 5 },
+                    },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                />
+            </Box>
+            <ConfirmationDialog
+                open={isConfirmationOpen}
+                title="Confirmation de suppression"
+                message="Êtes-vous sûr de vouloir supprimer cet article ?"
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+            />
         </>
     );
 }

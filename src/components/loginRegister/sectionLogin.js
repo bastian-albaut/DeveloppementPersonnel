@@ -26,9 +26,9 @@ export default function Login(props) {
 
     const handleNavigate = (decodedToken) => {
         if(decodedToken.isProfessional) {
-            navigate(`/article/utilisateur/${decodedToken.id}`, { state: { message: 'Vous êtes connecté !' } });
+            navigate(`/tableaudebord/professionnel/${decodedToken.id}`, { state: { message: 'Vous êtes connecté !' } });
         } else {
-            navigate(`/tableaudebord/${decodedToken.id}`, { state: { message: 'Vous êtes connecté !' } });
+            navigate(`/tableaudebord/utilisateur/${decodedToken.id}`, { state: { message: 'Vous êtes connecté !' } });
         }
     }
 

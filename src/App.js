@@ -16,6 +16,7 @@ import CurrentUserProvider from './providers/currentUserProvider';
 import ArticleDetail from './pages/ArticleDetail';
 import ArticlesOfUser from './pages/ArticlesOfUser';
 import TipsOfUser from './pages/TipsOfUser';
+import DashboardProfessional from './pages/DashboardProfessional';
 
 const { palette } = createTheme();
 
@@ -127,12 +128,11 @@ const App = () => {
               <Route path="/" element={<HomePage />} width="100%"/>
               <Route path="/quiz" element={<Quiz />} width="100%"/>
               <Route path="/quiz/resultatat/:id" element={<QuizResult />} width="100%"/>
-              <Route path="/tableaudebord/:id" element={<Dashboard />} width="100%"/>
+              <Route path="/tableaudebord/utilisateur/:id" element={<Dashboard />} width="100%"/>
+              <Route path="/tableaudebord/professionnel/:id" element={<DashboardProfessional />} width="100%"/>
               <Route path="/connexion" element={<LoginRegister />} width="100%"/>
               <Route path="/article/creation" element={<ArticleCreate />} width="100%"/>
               <Route path="/article/:id" element={<ArticleDetail />} width="100%"/>
-              <Route path="/article/utilisateur/:id" element={<ArticlesOfUser />} width="100%"/>
-              <Route path="/astuce/utilisateur/:id" element={<TipsOfUser />} width="100%"/>
               <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
           </BrowserRouter>

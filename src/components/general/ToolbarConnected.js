@@ -41,19 +41,13 @@ export default function ToolbarConnected(props) {
 
     const handleDashboard = () => {
         handleCloseNavMenu();
-        navigate(`/tableaudebord/${props.currentUser._id}`);
+        navigate(`/tableaudebord/utilisateur/${props.currentUser._id}`);
     }
 
-    const handleMyArticles = () => {
+    const handleDashboardProfessional = () => {
         handleCloseNavMenu();
-        navigate(`/article/utilisateur/${props.currentUser._id}`);
+        navigate(`/tableaudebord/professionnel/${props.currentUser._id}`);
     }
-
-    const handleMyTips = () => {
-        handleCloseNavMenu();
-        navigate(`/astuce/utilisateur/${props.currentUser._id}`);
-    }
-
 
     // Get the result id correponding to the user
     const [resultId, setResultId] = useState(null);
@@ -71,13 +65,9 @@ export default function ToolbarConnected(props) {
     if(props.currentUser.isProfessional) {
         pages = [
             {
-              name: 'Articles',
-              function : handleMyArticles
+              name: 'Tableau de bord',
+              function : handleDashboardProfessional
             }, 
-            {
-                name: 'Astuces',
-                function : handleMyTips
-            },
         ];
     } else {
         pages = [
