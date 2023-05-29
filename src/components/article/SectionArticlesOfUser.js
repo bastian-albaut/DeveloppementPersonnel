@@ -30,18 +30,19 @@ const SectionArticlesOfUser = (props) => {
     }
 
     const columns = [
-        { field: 'title', headerName: 'Titre', width: 800 },
-        { field: 'date', headerName: 'Date', width: 250 },
+        { field: 'title', headerClassName: 'super-app-theme--header', headerName: 'Titre', width: 800 },
+        { field: 'date', headerClassName: 'super-app-theme--header', headerName: 'Date', width: 250 },
         {
             field: "actions",
             headerName: "Actions",
+            headerClassName: 'super-app-theme--header',
             width: 120,
             sortable: false,
             filterable: false,
             renderCell: (params) => (
               <Delete
                 id={styles.deleteIcon}
-                onClick={() => handleDelete(params.row.id)}
+                onClick={(e) => handleDelete(e, params.row.id)}
                 style={{ cursor: "pointer" }}
               />
             ),
@@ -76,7 +77,8 @@ const SectionArticlesOfUser = (props) => {
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
     const [selectedArticleId, setSelectedArticleId] = useState(null);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (e, id) => {
+        e.stopPropagation();
         setSelectedArticleId(id);
         setIsConfirmationOpen(true);
     };
@@ -106,25 +108,55 @@ const SectionArticlesOfUser = (props) => {
         navigate(`/article/creation`);
     }
 
+    const handleRowClick = (params) => {
+        const articleId = params.row.id;
+        navigate(`/article/${articleId}`);
+    };
+
     return (
         <>
         {message && <AlertComponent message={message} severity={severity} />}
-        <Box id={styles.boxTitleButton}>
-            <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
-            <Button variant="contained" color="primary" onClick={handleAddArticle}>Ajouter un article</Button>
-        </Box>
-            <Box id={styles.boxDataGrid}>
-                <DataGrid
-                    localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
-                    rows={rowsArticles}
-                    columns={columns}
-                    initialState={{
-                    pagination: {
-                        paginationModel: { page: 0, pageSize: 5 },
+        <Box id={styles.bigBox}>
+            <Box id={styles.boxTitleButton}>
+                <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes articles</Typography>
+                <Button variant="contained" color="primary" onClick={handleAddArticle}>Ajouter un article</Button>
+            </Box>
+                <Box id={styles.boxDataGrid}
+                sx={{
+                    '& .super-app-theme--header': {
+                    backgroundColor: 'rgba(157, 171, 179, 0.7)',
                     },
-                    }}
-                    pageSizeOptions={[5, 10]}
-                />
+                }}>
+                    <DataGrid
+                        sx={{
+                            // disable cell selection style
+                            '.MuiDataGrid-cell:focus': {
+                            outline: 'none'
+                            },
+                            // pointer cursor on ALL rows
+                            '& .MuiDataGrid-row:hover': {
+                            cursor: 'pointer'
+                            },
+                            // alternate row colors
+                            '& .MuiDataGrid-row:nth-of-type(odd)': {
+                                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                            },
+                            '& .MuiDataGrid-row:nth-of-type(even)': {
+                                backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                            },
+                        }}
+                        localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
+                        rows={rowsArticles}
+                        columns={columns}
+                        onRowClick={handleRowClick}
+                        initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                        }}
+                        pageSizeOptions={[5, 10]}
+                    />
+                </Box>
             </Box>
             <ConfirmationDialog
                 open={isConfirmationOpen}

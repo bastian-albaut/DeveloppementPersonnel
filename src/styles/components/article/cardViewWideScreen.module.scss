@@ -4,6 +4,7 @@
 $marginCard: 5px;
 
 #card {
+    background-color: $greyColor;
     margin: 0 $marginCard 0 $marginCard;
     max-height: 300px;
     width: 100vw;

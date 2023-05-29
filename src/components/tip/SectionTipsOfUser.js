@@ -12,12 +12,13 @@ import ConfirmationDialog from "../general/ConfirmationDialog";
 const SectionTipsOfUser = (props) => {
 
     const columns = [
-        { field: 'content', headerName: 'Contenu', width: 950 },
-        { field: 'score', headerName: 'Score', width: 100 },
+        { field: 'content', headerClassName: 'super-app-theme--header', headerName: 'Contenu', width: 950 },
+        { field: 'score', headerClassName: 'super-app-theme--header', headerName: 'Score', width: 100 },
         {
             field: "actions",
             headerName: "Actions",
             width: 120,
+            headerClassName: 'super-app-theme--header',
             sortable: false,
             filterable: false,
             renderCell: (params) => (
@@ -144,36 +145,60 @@ const SectionTipsOfUser = (props) => {
     return (
         <>
         {message && <AlertComponent message={message} severity={severity} />}
-        <Box id={styles.boxTitleButton}>
-            <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes astuces</Typography>
-            <Button variant="contained" color="primary" onClick={handleAddTip}>Ajouter une astuce</Button>
-        </Box>
-            <Box id={styles.boxDataGrid}>
-                {isAddTipOpen && (
-                    <Box id={styles.boxAddTip}>
-                        <TextField className={styles.textField} multiline rows={3} label="Contenu" variant="outlined" margin="dense" required onChange={(e) => setFormData({...formData, content: e.target.value})}/>
-                        <Button id={styles.buttonCreateTip} variant="contained" color="primary" onClick={handleSubmitCreateTip}>Créer l'astuce</Button>
-                    </Box>
-                )}
-                {isUpdateTipOpen && (
-                    <Box id={styles.boxAddTip}>
-                        <TextField className={styles.textField} multiline rows={3} label="Contenu" variant="outlined" margin="dense" required value={formDataUpdate.content} onChange={(e) => setFormDataUpdate({...formDataUpdate, content: e.target.value})}/>
-                        <Typography id={styles.typoWarning} variant="body1" color="secondary">Attention: Cela va remettre à 0 le score</Typography>
-                        <Button id={styles.buttonCreateTip} variant="contained" color="primary" onClick={handleSubmitUpdateTip}>Modifier l'astuce</Button>
-                    </Box>
-                )}
-                <DataGrid
-                    localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
-                    rows={rowsTips}
-                    columns={columns}
-                    initialState={{
-                    pagination: {
-                        paginationModel: { page: 0, pageSize: 5 },
+        <Box id={styles.bigBox}>
+            <Box id={styles.boxTitleButton}>
+                <Typography id={styles.typoTitlePage} variant="h4" color="initial">Mes astuces</Typography>
+                <Button variant="contained" color="primary" onClick={handleAddTip}>Ajouter une astuce</Button>
+            </Box>
+            {isAddTipOpen && (
+                <Box id={styles.boxAddTip}>
+                    <TextField className={styles.textField} multiline rows={3} label="Contenu" variant="outlined" margin="dense" required onChange={(e) => setFormData({...formData, content: e.target.value})}/>
+                    <Button id={styles.buttonCreateTip} variant="contained" color="primary" onClick={handleSubmitCreateTip}>Créer l'astuce</Button>
+                </Box>
+            )}
+            {isUpdateTipOpen && (
+                <Box id={styles.boxAddTip}>
+                    <TextField className={styles.textField} multiline rows={3} label="Contenu" variant="outlined" margin="dense" required value={formDataUpdate.content} onChange={(e) => setFormDataUpdate({...formDataUpdate, content: e.target.value})}/>
+                    <Typography id={styles.typoWarning} variant="body1" color="secondary">Attention: Cela va remettre à 0 le score</Typography>
+                    <Button id={styles.buttonCreateTip} variant="contained" color="primary" onClick={handleSubmitUpdateTip}>Modifier l'astuce</Button>
+                </Box>
+            )}
+                <Box id={styles.boxDataGrid}
+                sx={{
+                    '& .super-app-theme--header': {
+                    backgroundColor: 'rgba(157, 171, 179, 0.7)',
                     },
+                }}>
+                    <DataGrid
+                    sx={{
+                        // disable cell selection style
+                        '.MuiDataGrid-cell:focus': {
+                        outline: 'none'
+                        },
+                        // pointer cursor on ALL rows
+                        '& .MuiDataGrid-row:hover': {
+                        cursor: 'pointer'
+                        },
+                        // alternate row colors
+                        '& .MuiDataGrid-row:nth-of-type(odd)': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                        },
+                        '& .MuiDataGrid-row:nth-of-type(even)': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                        },
                     }}
-                    pageSizeOptions={[5, 10]}
-                    getRowId={(row) => row.id}
-                />
+                        localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
+                        rows={rowsTips}
+                        columns={columns}
+                        initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                        }}
+                        pageSizeOptions={[5, 10]}
+                        getRowId={(row) => row.id}
+                    />
+                </Box>
             </Box>
             <ConfirmationDialog
                 open={isConfirmationOpen}

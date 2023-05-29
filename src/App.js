@@ -54,31 +54,31 @@ let theme = createTheme({
     },
     h2: {
       fontFamily: [
-        'Raleway',
+        'Fredoka',
         'cursive',
       ].join(','),
     },
     h3: {
       fontFamily: [
-        'Raleway',
+        'Fredoka',
         'sans-serif',
       ].join(','),
     },
     h4: {
       fontFamily: [
-        'Raleway',
+        'Fredoka',
         'sans-serif',
       ].join(','),
     },
     h5: {
       fontFamily: [
-        'Raleway',
+        'Fredoka',
         'sans-serif',
       ].join(','),
     },
     h6: {
       fontFamily: [
-        'Raleway',
+        'Fredoka',
         'sans-serif',
       ].join(','),
     },
