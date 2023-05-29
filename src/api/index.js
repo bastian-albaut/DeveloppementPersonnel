@@ -25,3 +25,8 @@ export const getAllArticles = () => API.get('/article');
 export const getArticlesById = (userId) => API.get(`/article/user/${userId}`);
 export const deleteArticle = (articleId) => API.delete(`/article/${articleId}`);
 export const getRandomQuote = () => API.get('/quote/random');
+export const postTip = (data) => API.post('/tip', data);
+export const getTip = (tipId) => API.get(`/tip/${tipId}`);
+export const getAllTips = () => API.get('/tip');
+export const getTipsById = (userId) => API.get(`/tip/user/${userId}`);
+export const deleteTip = (tipId) => API.delete(`/tip/${tipId}`);

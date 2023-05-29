@@ -4,10 +4,26 @@ import AliceCarousel from "react-alice-carousel";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import CardViewWideScreen from "../tip/cardViewWideScreen";
 import CardViewSmallScreen from "../tip/cardViewSmallScreen";
-import tips from "../../assets/tip/listTips";
 import styles from "../../styles/components/dashboard/sectionTips.module.scss"
+import { getAllTips } from "../../api";
+
 
 export default function SectionTips() {
+
+    // Fetch all tips from API
+    const [tips, setTips] = useState(null);
+    useEffect(() => {
+        const fetchTips = async () => {
+            const resultat = await getAllTips();
+            if(resultat && resultat.data) {
+                setTips(resultat.data);
+                console.log(resultat.data);
+            }
+        }
+        
+        fetchTips();
+    }, []);
+
     const responsive = {
         0: { items: 1 },
         768: { items: 2 },
